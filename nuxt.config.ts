@@ -1,0 +1,52 @@
+// nuxt.config.ts
+import { defineNuxtConfig } from 'nuxt/config'
+
+export default defineNuxtConfig({
+  devtools: {
+    enabled: true
+  },
+  modules: [
+    '@pinia/nuxt',
+  ],
+  build: {
+    transpile: ['primevue'],
+  },
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.NUXT_PUBLIC_API_BASE,
+      authBase: process.env.NUXT_PUBLIC_AUTH_BASE,
+      storageBase: process.env.NUXT_PUBLIC_STORAGE_BASE,
+    }
+  },
+  imports: {
+    dirs: ['utils']
+  },
+  plugins: [
+    // '~/plugins/api.client.ts',
+    '~/plugins/isotope.client.ts',
+    '~/plugins/aos.client.ts',
+  ],
+  css: [
+    '~/public/css/bootstrap.min.css',
+    '~/public/css/animate.css',
+    '~/public/css/aos.css',
+    '~/public/css/flaticon.css',
+    '~/public/css/fontawesome-all.min.css',
+    '~/public/css/global.css',
+    '~/public/css/jquery.fancybox.min.css',
+    '~/public/css/leaflet.css',
+    '~/public/css/meanmenu.css',
+    '~/public/css/slick.css',
+    '~/public/css/index-4/style.css',
+    '~/public/css/index-4/default.css',
+    '~/public/css/index-4/responsive.css',
+  ],
+  app: {
+    baseURL: '/',
+    head: {
+      title: 'Selly Andriany Gantina',
+    }
+  },
+
+  compatibilityDate: "2025-02-01",
+})

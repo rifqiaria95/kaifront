@@ -1,0 +1,7 @@
+{
+  "name": "vue-isotope",
+  "description": "Vue.js components for Isotope Layouts.",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {}
+}

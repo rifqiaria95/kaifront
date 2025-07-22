@@ -1,0 +1,1 @@
+export { default } from "file:///C:/laragon/www/kaifront/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
