@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true
   },
+  
   modules: [
     '@pinia/nuxt',
   ],
@@ -13,16 +14,16 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE,
-      authBase: process.env.NUXT_PUBLIC_AUTH_BASE,
-      storageBase: process.env.NUXT_PUBLIC_STORAGE_BASE,
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8000/api',
+      authBase: process.env.NUXT_PUBLIC_AUTH_BASE || 'http://localhost:8000/api/auth',
+      storageBase: process.env.NUXT_PUBLIC_STORAGE_BASE || 'http://localhost:8000',
     }
   },
   imports: {
     dirs: ['utils']
   },
   plugins: [
-    // '~/plugins/api.client.ts',
+    '~/plugins/api.client.ts',
     '~/plugins/isotope.client.ts',
     '~/plugins/aos.client.ts',
   ],
@@ -30,6 +31,7 @@ export default defineNuxtConfig({
     '~/public/css/bootstrap.min.css',
     '~/public/css/animate.css',
     '~/public/css/aos.css',
+    '~/public/css/aos-fix.css',
     '~/public/css/flaticon.css',
     '~/public/css/fontawesome-all.min.css',
     '~/public/css/global.css',
@@ -49,4 +51,24 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: "2025-02-01",
+  
+  // Konfigurasi untuk menangani hydration mismatch
+  ssr: true,
+  nitro: {
+    experimental: {
+      wasm: true
+    }
+  },
+  
+  // Konfigurasi untuk menangani hydration mismatch
+  experimental: {
+    payloadExtraction: false
+  },
+  
+  // Konfigurasi untuk menangani client-side rendering
+  vite: {
+    ssr: {
+      noExternal: ['aos']
+    }
+  }
 })

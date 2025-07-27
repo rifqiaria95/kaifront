@@ -39,31 +39,31 @@
           >
             <div class="slider-wrapper h-100">
               <div
-                class="slider-content text-center mt-65 text-lg-left position-relative z-index11"
+                class="slider-content text-center mt-65 text-lg-left position-relative z-index99"
                 data-aos="fade-right"
                 data-aos-duration="2200"
                 data-aos-delay="1000"
-                style="z-index: 99999; position: relative;"
+                style="z-index: 9; position: relative;"
               >
                 <h1 class="mb-25 text-uppercase white-text" style="color: #fff !important; font-size: 72px; font-weight: bold; line-height: 1.085;">
                   <span
                     class="sub-heading d-block text-uppercase theme-color mb-10"
                     style="color: #c75142 !important; font-size: 30px; letter-spacing: 4px;"
-                    >Hello I'm</span
+                    >Halo, Saya</span
                   >
                   Selly Andriany Gantina
                 </h1>
-                <h2 class="text-uppercase white-text mb-40" style="color: #fff !important; font-size: 36px;">
-                  A Passionate
+                <h2 class="text-uppercase white-text mb-40" style="color: #fff !important; font-size: 24px;">
+                  Saya adalah seorang
                   <span class="d-text d-block d-sm-inline-block">
                     <span
                       class="typer theme-color d-inline-block pl-2"
                       id="main"
-                      data-words="Web Developer,Web Designer,Freelancer"
+                      data-words="Anggota Dewan Perwakilan Rakyat RI periode 2019–2024,Mantan Anggota Dewan Perwakilan Rakyat RI periode 2024–2029, Mantan Anggota DPRD Jawa Barat 2004-2009"
                       data-delay="100"
                       data-deleteDelay="1000"
                       data-colors="#c75142"
-                      style="color: #c75142 !important;"
+                      style="color: #c75142 !important; font-size: 24px;"
                     ></span
                     ><span
                       class="cursor theme-color d-inline-block"
@@ -113,13 +113,15 @@
             ></a>
           </li>
           <li class="mt-10 mb-10 rotate-hover">
-            <a class="text-white text-center d-inline-block rotate" href="#"
-              ><i class="fab fa-twitter"></i
-            ></a>
+            <a class="text-white text-center d-inline-block rotate" href="https://www.tiktok.com/@sellygantina?_t=ZS-8yF29UGlEJs&_r=1" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+                  <path fill="#fff" d="M41,4H9C6.243,4,4,6.243,4,9v32c0,2.757,2.243,5,5,5h32c2.757,0,5-2.243,5-5V9C46,6.243,43.757,4,41,4z M37.006,22.323 c-0.227,0.021-0.457,0.035-0.69,0.035c-2.623,0-4.928-1.349-6.269-3.388c0,5.349,0,11.435,0,11.537c0,4.709-3.818,8.527-8.527,8.527 s-8.527-3.818-8.527-8.527s3.818-8.527,8.527-8.527c0.178,0,0.352,0.016,0.527,0.027v4.202c-0.175-0.021-0.347-0.053-0.527-0.053 c-2.404,0-4.352,1.948-4.352,4.352s1.948,4.352,4.352,4.352s4.527-1.894,4.527-4.298c0-0.095,0.042-19.594,0.042-19.594h4.016 c0.378,3.591,3.277,6.425,6.901,6.685V22.323z"></path>
+              </svg>
+            </a>
           </li>
           <li class="mt-10 mb-10 rotate-hover">
-            <a class="text-white text-center d-inline-block rotate" href="#"
-              ><i class="fab fa-linkedin-in"></i
+            <a class="text-white text-center d-inline-block rotate" href="https://www.instagram.com/sellygantina76?igsh=MXhmd2djb3F6Y216cg==" target="_blank"
+              ><i class="fab fa-instagram"></i
             ></a>
           </li>
           <li class="mt-10 mb-10 rotate-hover">

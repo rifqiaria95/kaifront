@@ -7,7 +7,7 @@
     :footerLogo="'/images/index-4/black-logo.png'"
   >
     <Home :bgImage="'/images/slider/slider-bg.jpg'" />
-
+    <Chatbot />
     <About2 :signature="'/images/index-4/signature.png'" />
     <Counter />
     <Portfolio2 />

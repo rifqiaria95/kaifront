@@ -21,11 +21,23 @@
                     data-tilt
                     data-tilt-max="10"
                   >
-                    <img
-                      class="border-radius10 position-relative z-index11"
-                      src="/images/about/about-img.jpg"
-                      alt="about image 1"
-                    />
+                                      <img
+                    class="border-radius10 position-relative z-index11"
+                    :src="getImageUrl(aboutData?.image)"
+                    :alt="aboutData?.title ? cleanText(aboutData.title) : 'About Image'"
+                    @error="handleImageError"
+                    @load="handleImageLoad"
+                  />
+                  <!-- Debug info untuk image -->
+                  <div v-if="imageError" class="mt-2 p-2 bg-warning text-dark small">
+                    <strong>Image Debug:</strong><br>
+                    Image Path: {{ aboutData?.image || 'null' }}<br>
+                    Constructed URL: {{ getImageUrl(aboutData?.image) }}<br>
+                    Expected Location: {{ $api.getImageUrl(aboutData?.image) }}<br>
+                    <button @click="imageError = false" class="btn btn-sm btn-outline-warning mt-1">
+                      Hide Debug
+                    </button>
+                  </div>
                   </div>
 
                   <div
@@ -68,23 +80,47 @@
           <!-- /col -->
 
           <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-            <div class="about-content position-relative mb-50">
+            <!-- Loading State -->
+            <div v-if="loading" class="about-content position-relative mb-50 text-center">
+              <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+              <p class="mt-3">Memuat data about...</p>
+            </div>
+
+            <!-- Error State -->
+            <div v-else-if="error" class="about-content position-relative mb-50">
+              <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">Error!</h4>
+                <p>{{ error }}</p>
+                <button class="btn btn-sm btn-outline-danger" @click="aboutStore.fetchAboutData()">
+                  Coba Lagi
+                </button>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div v-else class="about-content position-relative mb-50">
               <div class="position-relative">
                 <div class="title">
                   <span class="theme-color text-uppercase d-block mb-1 mt--5"
                     >About Me</span
                   >
-                  <h2 class="mb-30">I Develop System that Works</h2>
+                  <h2 class="mb-30">{{ aboutData?.title ? cleanText(aboutData.title) : 'I Develop System that Works' }}</h2>
                 </div>
                 <!-- /title -->
               </div>
-              <p class="mb-25">
+              <p class="mb-25" v-if="aboutData?.description">
+                {{ cleanText(aboutData.description) }}
+              </p>
+              <p class="mb-25" v-else>
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa
                 qui officia dese runt mollit anim id est laboru doloremque
                 laudantium, totaeaque ipsa quae ab illo inven tore veritatis et
                 quasi architecto beatae vitae.
               </p>
-              <p>Oremque laudantium, totaeaque ipsa quae</p>
+              <p v-if="aboutData?.subtitle">{{ cleanText(aboutData.subtitle) }}</p>
+              <p v-else>Oremque laudantium, totaeaque ipsa quae</p>
               <div class="about-info-wrapper pt-25 pb-20 mt-25">
                 <div class="row">
                   <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 col-12">
@@ -113,9 +149,9 @@
                       </li>
                       <!-- /li -->
                       <li class="d-inline-block">
-                        <p class="mb-6">+123 456 7890</p>
-                        <p class="mb-6">hello@thames.com</p>
-                        <p class="mb-6">Bangladeshi</p>
+                        <p class="mb-6">{{ aboutData?.phone || '+123 456 7890' }}</p>
+                        <p class="mb-6">{{ aboutData?.email || 'hello@thames.com' }}</p>
+                        <p class="mb-6">{{ aboutData?.address || 'Indonesia' }}</p>
                       </li>
                       <!-- /li -->
                     </ul>
@@ -164,13 +200,60 @@
     <!-- /about-wrapper -->
   </div>
 </template>
-<script>
-export default {
-  props: {
-    signature: {
-      type: String,
-      default: "/images/about/signature.png",
-    },
+<script setup>
+import { useAboutStore } from '~/stores/about'
+import { cleanText } from '~/utils/stripHtml'
+
+// Props
+defineProps({
+  signature: {
+    type: String,
+    default: "/images/about/signature.png",
   },
-};
+})
+
+// Store
+const aboutStore = useAboutStore()
+
+// Computed
+const aboutData = computed(() => aboutStore.getAboutData)
+const loading = computed(() => aboutStore.isLoading)
+const error = computed(() => aboutStore.hasError)
+
+// State untuk image error handling
+const imageError = ref(false)
+
+// Functions
+const { $api } = useNuxtApp()
+
+const getImageUrl = (imagePath) => {
+  console.log('getImageUrl called with:', imagePath)
+  return $api.getImageUrl(imagePath)
+}
+
+const handleImageError = (event) => {
+  console.warn('Image failed to load:', event.target.src)
+  imageError.value = true
+  
+  // Coba fallback ke default image jika bukan default image yang gagal
+  const img = event.target
+  if (!img.src.includes('about-img.jpg')) {
+    console.log('Falling back to default image')
+    img.src = '/images/about/about-img.jpg'
+  } else {
+    console.error('Default image also failed to load')
+  }
+}
+
+const handleImageLoad = (event) => {
+  console.log('Image loaded successfully:', event.target.src)
+  imageError.value = false
+}
+
+// Fetch data saat komponen di-mount
+onMounted(async () => {
+  if (!aboutData.value) {
+    await aboutStore.fetchAboutData()
+  }
+})
 </script>

@@ -14,9 +14,9 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="title">
               <span class="theme-color text-uppercase d-block mb-6"
-                >Get Updates</span
+                >Dapatkan Pembaruan</span
               >
-              <h2>Recent Blog</h2>
+              <h2>Berita Terkini</h2>
             </div>
             <!-- /title -->
           </div>

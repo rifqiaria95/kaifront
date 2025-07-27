@@ -8,7 +8,7 @@
               <span class="theme-color text-uppercase d-block mb-6"
                 >Contact Me</span
               >
-              <h2>Let’s Start A New Project</h2>
+              <h2>Let's Start A New Project</h2>
             </div>
             <!-- /title -->
           </div>
@@ -220,3 +220,7 @@
     <!-- /contact-wrapper -->
   </div>
 </template>
+
+<script setup>
+// Component logic akan ditangani oleh directive v-aos-safe
+</script>

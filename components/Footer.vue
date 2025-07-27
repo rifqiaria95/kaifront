@@ -28,7 +28,7 @@
               class="col-xl-3 offset-xl-2 col-lg-3 col-md-4 col-sm-4 col-12 d-none d-sm-block d-lg-none"
             >
               <div class="footer-widget pb-40">
-                <h4 class="mb-28 mt-2">Follow Me</h4>
+                <h4 class="mb-28 mt-2">Ikuti Saya</h4>
                 <ul class="social social-bg text-center d-flex">
                   <li class="mr-2 rotate-hover">
                     <a
@@ -90,7 +90,7 @@
               class="col-xl-3 offset-xl-2 col-lg-3 col-md-4 col-sm-4 col-12 d-sm-none d-lg-block"
             >
               <div class="footer-widget pb-40">
-                <h4 class="mb-28 mt-2">Follow Me</h4>
+                <h4 class="mb-28 mt-2">Ikuti Saya</h4>
                 <ul class="social social-bg text-center d-flex">
                   <li class="mr-2 rotate-hover">
                     <a

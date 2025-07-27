@@ -20,6 +20,7 @@ interface _GlobalComponents {
     'BlogModal': typeof import("../components/BlogModal.vue")['default']
     'Brand': typeof import("../components/Brand.vue")['default']
     'Brand2': typeof import("../components/Brand2.vue")['default']
+    'Chatbot': typeof import("../components/Chatbot.vue")['default']
     'Contact': typeof import("../components/Contact.vue")['default']
     'Counter': typeof import("../components/Counter.vue")['default']
     'Education': typeof import("../components/Education.vue")['default']
@@ -74,6 +75,7 @@ interface _GlobalComponents {
     'LazyBlogModal': LazyComponent<typeof import("../components/BlogModal.vue")['default']>
     'LazyBrand': LazyComponent<typeof import("../components/Brand.vue")['default']>
     'LazyBrand2': LazyComponent<typeof import("../components/Brand2.vue")['default']>
+    'LazyChatbot': LazyComponent<typeof import("../components/Chatbot.vue")['default']>
     'LazyContact': LazyComponent<typeof import("../components/Contact.vue")['default']>
     'LazyCounter': LazyComponent<typeof import("../components/Counter.vue")['default']>
     'LazyEducation': LazyComponent<typeof import("../components/Education.vue")['default']>
@@ -134,6 +136,7 @@ export const Blog2: typeof import("../components/Blog2.vue")['default']
 export const BlogModal: typeof import("../components/BlogModal.vue")['default']
 export const Brand: typeof import("../components/Brand.vue")['default']
 export const Brand2: typeof import("../components/Brand2.vue")['default']
+export const Chatbot: typeof import("../components/Chatbot.vue")['default']
 export const Contact: typeof import("../components/Contact.vue")['default']
 export const Counter: typeof import("../components/Counter.vue")['default']
 export const Education: typeof import("../components/Education.vue")['default']
@@ -188,6 +191,7 @@ export const LazyBlog2: LazyComponent<typeof import("../components/Blog2.vue")['
 export const LazyBlogModal: LazyComponent<typeof import("../components/BlogModal.vue")['default']>
 export const LazyBrand: LazyComponent<typeof import("../components/Brand.vue")['default']>
 export const LazyBrand2: LazyComponent<typeof import("../components/Brand2.vue")['default']>
+export const LazyChatbot: LazyComponent<typeof import("../components/Chatbot.vue")['default']>
 export const LazyContact: LazyComponent<typeof import("../components/Contact.vue")['default']>
 export const LazyCounter: LazyComponent<typeof import("../components/Counter.vue")['default']>
 export const LazyEducation: LazyComponent<typeof import("../components/Education.vue")['default']>
