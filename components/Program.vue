@@ -5,9 +5,9 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="title text-center">
             <span class="theme-color text-uppercase d-block mb-6"
-              >Let’s Start Working</span
+              >Program Yang Sedang Dibuka</span
             >
-            <h2>Pricing Plans</h2>
+            <h2>Program</h2>
           </div>
           <!-- /title -->
         </div>

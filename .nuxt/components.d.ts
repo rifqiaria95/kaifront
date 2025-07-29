@@ -35,7 +35,7 @@ interface _GlobalComponents {
     'Portfolio3': typeof import("../components/Portfolio3.vue")['default']
     'PortfolioModal': typeof import("../components/PortfolioModal.vue")['default']
     'Preloader': typeof import("../components/Preloader.vue")['default']
-    'Pricing': typeof import("../components/Pricing.vue")['default']
+    'Program': typeof import("../components/Program.vue")['default']
     'ProgressBar': typeof import("../components/ProgressBar.vue")['default']
     'ScrollTop': typeof import("../components/ScrollTop.vue")['default']
     'Service': typeof import("../components/Service.vue")['default']
@@ -90,7 +90,7 @@ interface _GlobalComponents {
     'LazyPortfolio3': LazyComponent<typeof import("../components/Portfolio3.vue")['default']>
     'LazyPortfolioModal': LazyComponent<typeof import("../components/PortfolioModal.vue")['default']>
     'LazyPreloader': LazyComponent<typeof import("../components/Preloader.vue")['default']>
-    'LazyPricing': LazyComponent<typeof import("../components/Pricing.vue")['default']>
+    'LazyProgram': LazyComponent<typeof import("../components/Program.vue")['default']>
     'LazyProgressBar': LazyComponent<typeof import("../components/ProgressBar.vue")['default']>
     'LazyScrollTop': LazyComponent<typeof import("../components/ScrollTop.vue")['default']>
     'LazyService': LazyComponent<typeof import("../components/Service.vue")['default']>
@@ -151,7 +151,7 @@ export const Portfolio2: typeof import("../components/Portfolio2.vue")['default'
 export const Portfolio3: typeof import("../components/Portfolio3.vue")['default']
 export const PortfolioModal: typeof import("../components/PortfolioModal.vue")['default']
 export const Preloader: typeof import("../components/Preloader.vue")['default']
-export const Pricing: typeof import("../components/Pricing.vue")['default']
+export const Program: typeof import("../components/Program.vue")['default']
 export const ProgressBar: typeof import("../components/ProgressBar.vue")['default']
 export const ScrollTop: typeof import("../components/ScrollTop.vue")['default']
 export const Service: typeof import("../components/Service.vue")['default']
@@ -206,7 +206,7 @@ export const LazyPortfolio2: LazyComponent<typeof import("../components/Portfoli
 export const LazyPortfolio3: LazyComponent<typeof import("../components/Portfolio3.vue")['default']>
 export const LazyPortfolioModal: LazyComponent<typeof import("../components/PortfolioModal.vue")['default']>
 export const LazyPreloader: LazyComponent<typeof import("../components/Preloader.vue")['default']>
-export const LazyPricing: LazyComponent<typeof import("../components/Pricing.vue")['default']>
+export const LazyProgram: LazyComponent<typeof import("../components/Program.vue")['default']>
 export const LazyProgressBar: LazyComponent<typeof import("../components/ProgressBar.vue")['default']>
 export const LazyScrollTop: LazyComponent<typeof import("../components/ScrollTop.vue")['default']>
 export const LazyService: LazyComponent<typeof import("../components/Service.vue")['default']>
