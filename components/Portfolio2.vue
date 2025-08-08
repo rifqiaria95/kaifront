@@ -1,5 +1,5 @@
 <template>
-  <div id="work" class="portfolio-area over-hidden pt-155 pb-140">
+  <div id="galeri" class="portfolio-area over-hidden pt-155 pb-140">
     <div class="portfolio-wrapper position-relative">
       <div class="container">
         <div class="row">

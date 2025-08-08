@@ -194,26 +194,6 @@
           <!-- /col -->
         </div>
         <!-- /row -->
-        <div class="row">
-          <div
-            class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
-            data-aos="fade-up"
-            data-aos-anchor-placement="top-bottom"
-            data-aos-duration="2000"
-            data-aos-delay="500"
-          >
-            <div class="map-wrapper mt-70" id="mapwrapper">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116833.88253546324!2d90.26379826216589!3d23.780919352725377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1720157387794!5m2!1sen!2sbd"
-                width="100%"
-                height="340"
-                style="border: 0"
-              ></iframe>
-            </div>
-          </div>
-          <!-- /col -->
-        </div>
-        <!-- /row -->
       </div>
       <!-- /container -->
     </div>

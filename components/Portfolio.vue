@@ -1,5 +1,5 @@
 <template>
-  <div id="work" class="portfolio-area over-hidden pb-165">
+  <div id="galeri" class="portfolio-area over-hidden pb-165">
     <div class="marquee-w mb-125">
       <div class="marquee">
         <span class="pl-4">Senior Website Developer from New York *</span>

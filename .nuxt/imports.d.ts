@@ -29,12 +29,17 @@ export { withCtx, withDirectives, withKeys, withMemo, withModifiers, withScopeId
 export { requestIdleCallback, cancelIdleCallback } from '#app/compat/idle-callback';
 export { setInterval } from '#app/compat/interval';
 export { defineLazyHydrationComponent } from '#app/composables/lazy-hydration';
+export { useAuth } from '../composables/useAuth';
+export { useResetPassword } from '../composables/useResetPassword';
 export { stripHtml, stripHtmlRegex, cleanText } from '../utils/stripHtml';
 export { TyperSetup } from '../utils/typer';
 export { thamesUtils } from '../utils/utils';
 export { useAboutStore } from '../stores/about';
+export { useAuthStore } from '../stores/auth';
 export { useChatbotStore, Chatbot, ChatMessage } from '../stores/chatbot';
 export { useEducationStore } from '../stores/education';
 export { useNewsStore } from '../stores/news';
+export { useProgramStore } from '../stores/program';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
+export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

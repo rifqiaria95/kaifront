@@ -33,32 +33,48 @@
                         <li>
                           <a href="#visimisi">Visi & Misi</a>
                         </li>
-                        <li>
-                          <a href="#portfolio">Pendidikan</a>
-                        </li>
                       </ul>
                     </li>
                     <li>
                       <a href="#program">Program</a>
                     </li>
                     <li>
-                      <a href="#work">Pengalaman</a>
+                      <a href="#pengalaman">Pengalaman</a>
                     </li>
                     <li>
-                      <a href="#service">Pendidikan</a>
+                      <a href="#pendidikan">Pendidikan</a>
+                    </li>
+                    <li>
+                      <a href="#galeri">Galeri</a>
                     </li>
                     <li>
                       <a href="#contact">Kontak</a>
-                    </li>
-                    <li>
-                      <a href="#blog">Galeri</a>
                     </li>
                   </ul>
                 </nav>
               </div>
               <!-- /main-menu -->
               <div class="header-btn pl-45" v-if="downloadBtn">
+                <!-- Jika user sudah login -->
+                <div v-if="isAuthenticated" class="user-menu">
+                  <div class="dropdown">
+                    <a 
+                      href="#" 
+                      class="white-text text-uppercase d-inline-block f-700 dropdown-toggle"
+                      @click.prevent="toggleUserDropdown"
+                    >
+                      {{ user?.name || 'User' }}
+                    </a>
+                    <div class="dropdown-menu" :class="{ 'show': userDropdownOpen }">
+                      <a class="dropdown-item" href="#" @click.prevent="handleLogout">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Keluar
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Jika user belum login -->
                 <a
+                  v-else
                   href="/login"
                   class="white-text text-uppercase d-inline-block f-700"
                   >Masuk</a
@@ -118,7 +134,7 @@
                   <a href="#visimisi">Visi & Misi</a>
                 </li>
                 <li>
-                  <a href="#portfolio">Pendidikan</a>
+                  <a href="#pendidikan">Pendidikan</a>
                 </li>
               </ul>
             </li>
@@ -126,16 +142,26 @@
               <a href="#program">Program</a>
             </li>
             <li>
-              <a href="#work">Pengalaman</a>
+              <a href="#pengalaman">Pengalaman</a>
             </li>
             <li>
-              <a href="#service">Pendidikan</a>
+              <a href="#pendidikan">Pendidikan</a>
+            </li>
+            <li>
+              <a href="#galeri">Galeri</a>
             </li>
             <li>
               <a href="#contact">Kontak</a>
             </li>
-            <li>
-              <a href="#blog">Galeri</a>
+            <!-- User Menu for Mobile -->
+            <li v-if="isAuthenticated" class="mobile-user-menu">
+              <span class="text-white">{{ user?.name || 'User' }}</span>
+              <a href="#" @click.prevent="handleLogout" class="mobile-logout">
+                <i class="fas fa-sign-out-alt mr-2"></i>Keluar
+              </a>
+            </li>
+            <li v-else>
+              <a href="/login">Masuk</a>
             </li>
           </ul>
         </nav>
@@ -190,16 +216,51 @@ export default {
   data() {
     return {
       toggle: false,
-      mobileSubmenuOpen: false, // This needs to be here
+      mobileSubmenuOpen: false,
+      userDropdownOpen: false,
+    };
+  },
+  setup() {
+    const { isAuthenticated, user, logout, fetchUser } = useAuth();
+    
+    return {
+      isAuthenticated,
+      user,
+      logout,
+      fetchUser
     };
   },
   methods: {
     toggleMobileSubmenu() {
       this.mobileSubmenuOpen = !this.mobileSubmenuOpen;
+    },
+    toggleUserDropdown() {
+      this.userDropdownOpen = !this.userDropdownOpen;
+    },
+    async handleLogout() {
+      this.userDropdownOpen = false;
+      await this.logout();
     }
   },
   mounted() {
     thamesUtils.stickyNav();
+    
+    // Fetch user data saat komponen di-mount
+    const token = useCookie('auth-token');
+    if (token.value) {
+      this.fetchUser();
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!this.$el.querySelector('.user-menu')?.contains(e.target)) {
+        this.userDropdownOpen = false;
+      }
+    });
+  },
+  beforeUnmount() {
+    // Remove event listener
+    document.removeEventListener('click', this.handleOutsideClick);
   },
   props: {
     logo: {
@@ -402,6 +463,115 @@ export default {
 
 .side-mobile-menu .mean-container {
     width: 100% !important;
+}
+
+/* User Menu Dropdown Styles */
+.user-menu {
+  position: relative;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  content: "";
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-bottom: 0;
+  border-left: 4px solid transparent;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease-in-out;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  clear: both;
+  font-weight: 400;
+  color: #333;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.dropdown-item:hover {
+  color: #C75142;
+  background-color: #f8f9fa;
+}
+
+.dropdown-item i {
+  margin-right: 8px;
+}
+
+/* Mobile User Menu Styles */
+.mobile-user-menu {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+.mobile-user-menu span {
+  display: block;
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.mobile-logout {
+  display: block;
+  padding: 8px 0;
+  color: #fff !important;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.mobile-logout:hover {
+  color: #ddd !important;
+}
+
+/* Close dropdown when clicking outside */
+@media (min-width: 1200px) {
+  .user-menu:not(:hover) .dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+  }
 }
 
 </style>
