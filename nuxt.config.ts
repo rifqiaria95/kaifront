@@ -57,6 +57,10 @@ export default defineNuxtConfig({
   nitro: {
     experimental: {
       wasm: true
+    },
+    prerender: {
+      failOnError: false,
+      crawlLinks: true
     }
   },
   

@@ -1,0 +1,104 @@
+/* XL Device :5000px. */
+@media screen and (min-width: 1921px) and (max-width: 5000px) {
+}
+
+/* XL Device :1920px. */
+@media screen and (min-width: 1200px) and (max-width: 1800px) {
+}
+
+/* XL Device :1920px. */
+@media screen and (min-width: 1200px) and (max-width: 1600px) {
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  /* .intro-wrapper h1 {
+          font-size: 56px;
+          padding-left: 100px;
+          padding-right: 100px;
+     } */
+  .shape {
+    max-width: 30px;
+    max-height: 30px;
+  }
+  .shape.sm-shape {
+    max-width: 30px;
+  }
+}
+
+/* LG Device :992px. */
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  /* .intro-wrapper h1 {
+          font-size: 50px;
+          padding-left: 100px;
+          padding-right: 100px;
+     } */
+  .intro-logo img {
+    max-width: 220px;
+  }
+  .shape {
+    max-width: 30px;
+    max-height: 30px;
+  }
+  .shape.sm-shape {
+    max-width: 30px;
+  }
+}
+
+/* MD Device :768px. */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  /* .intro-wrapper h1 {
+          font-size: 45px;
+     } */
+  .intro-logo img {
+    max-width: 220px;
+  }
+  .shape {
+    max-width: 30px;
+    max-height: 30px;
+  }
+  .shape.sm-shape {
+    max-width: 30px;
+  }
+}
+
+/* Extra small Device. */
+@media screen and (max-width: 767px) {
+  .intro-wrapper span.theme-color {
+    font-size: 26px;
+  }
+  .intro-wrapper h1 {
+    font-size: 24px;
+  }
+  .page-title-height {
+    min-height: 420px;
+  }
+  .intro-logo img {
+    max-width: 170px;
+  }
+  .intro-logo {
+    margin-bottom: 34px;
+  }
+  .sub-title {
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+  .shape {
+    max-width: 20px;
+    max-height: 20px;
+  }
+  .shape.sm-shape {
+    max-width: 20px;
+  }
+}
+
+/* SM Small Device :550px. */
+@media screen and (min-width: 576px) and (max-width: 767px) {
+}
+
+/* SM Small Device :550px. */
+@media screen and (min-width: 500px) and (max-width: 576px) {
+}
+
+/* SM Small Device :550px. */
+@media screen and (min-width: 400px) and (max-width: 576px) {
+}

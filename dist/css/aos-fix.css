@@ -1,0 +1,18 @@
+/* Fix untuk hydration mismatch AOS */
+[data-aos] {
+  /* Pastikan elemen terlihat saat server-side rendering */
+  opacity: 1;
+  transform: none;
+}
+
+/* Sembunyikan elemen AOS sampai client-side siap */
+.client-side [data-aos]:not(.aos-init) {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Tampilkan elemen setelah AOS diinisialisasi */
+.client-side [data-aos].aos-init {
+  opacity: 1;
+  transform: none;
+} 

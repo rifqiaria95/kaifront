@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Jost-Medium';
+  src: url('/fonts/jost-medium-font/jost-medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Jost-Medium', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+} 

@@ -1,0 +1,485 @@
+const client_manifest = {
+  "_About2.CUS6sul0.css": {
+    "resourceType": "style",
+    "prefetch": true,
+    "preload": true,
+    "file": "About2.CUS6sul0.css",
+    "src": "_About2.CUS6sul0.css"
+  },
+  "_B4jJlrkj.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "B4jJlrkj.js",
+    "name": "About2",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ],
+    "css": [
+      "About2.CUS6sul0.css"
+    ]
+  },
+  "About2.CUS6sul0.css": {
+    "file": "About2.CUS6sul0.css",
+    "resourceType": "style",
+    "prefetch": true,
+    "preload": true
+  },
+  "_C6G919P4.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "C6G919P4.js",
+    "name": "ScrollTop",
+    "imports": [
+      "_DiUUXkzl.js",
+      "_x_rD_Ya3.js",
+      "node_modules/nuxt/dist/app/entry.js"
+    ],
+    "css": [
+      "ScrollTop.CJKex__L.css"
+    ]
+  },
+  "ScrollTop.CJKex__L.css": {
+    "file": "ScrollTop.CJKex__L.css",
+    "resourceType": "style",
+    "prefetch": true,
+    "preload": true
+  },
+  "_CMBzZwn6.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "CMBzZwn6.js",
+    "name": "aos",
+    "isDynamicEntry": true,
+    "imports": [
+      "_D6-XlEtG.js"
+    ]
+  },
+  "_CYyLyjK-.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "CYyLyjK-.js",
+    "name": "nuxt-link",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_D6-XlEtG.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "D6-XlEtG.js",
+    "name": "_commonjsHelpers"
+  },
+  "_DGf6p6e0.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "DGf6p6e0.js",
+    "name": "Preloader",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_DiUUXkzl.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "DiUUXkzl.js",
+    "name": "parallax",
+    "isDynamicEntry": true,
+    "imports": [
+      "_D6-XlEtG.js"
+    ]
+  },
+  "_KOyCxTzY.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "KOyCxTzY.js",
+    "name": "isotope",
+    "isDynamicEntry": true,
+    "imports": [
+      "_D6-XlEtG.js"
+    ]
+  },
+  "_RHHml51R.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "RHHml51R.js",
+    "name": "v3",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_ScrollTop.CJKex__L.css": {
+    "resourceType": "style",
+    "prefetch": true,
+    "preload": true,
+    "file": "ScrollTop.CJKex__L.css",
+    "src": "_ScrollTop.CJKex__L.css"
+  },
+  "_x_rD_Ya3.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "x_rD_Ya3.js",
+    "name": "interval"
+  },
+  "layouts/default.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "DHCmtLPv.js",
+    "name": "default",
+    "src": "layouts/default.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_C6G919P4.js",
+      "node_modules/nuxt/dist/app/entry.js",
+      "_DiUUXkzl.js",
+      "_D6-XlEtG.js",
+      "_x_rD_Ya3.js"
+    ]
+  },
+  "layouts/thames.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "Dkor5HJ3.js",
+    "name": "thames",
+    "src": "layouts/thames.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_C6G919P4.js",
+      "node_modules/nuxt/dist/app/entry.js",
+      "_DiUUXkzl.js",
+      "_D6-XlEtG.js",
+      "_x_rD_Ya3.js"
+    ]
+  },
+  "node_modules/nuxt/dist/app/components/error-404.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "Cj8Ef2Zh.js",
+    "name": "error-404",
+    "src": "node_modules/nuxt/dist/app/components/error-404.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_CYyLyjK-.js",
+      "node_modules/nuxt/dist/app/entry.js",
+      "_RHHml51R.js"
+    ],
+    "css": []
+  },
+  "error-404.DbSSrwPL.css": {
+    "file": "error-404.DbSSrwPL.css",
+    "resourceType": "style",
+    "prefetch": true,
+    "preload": true
+  },
+  "node_modules/nuxt/dist/app/components/error-500.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "C1T2YXiX.js",
+    "name": "error-500",
+    "src": "node_modules/nuxt/dist/app/components/error-500.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js",
+      "_RHHml51R.js"
+    ],
+    "css": []
+  },
+  "error-500.DZRj88qG.css": {
+    "file": "error-500.DZRj88qG.css",
+    "resourceType": "style",
+    "prefetch": true,
+    "preload": true
+  },
+  "node_modules/nuxt/dist/app/entry.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "CVH10xce.js",
+    "name": "entry",
+    "src": "node_modules/nuxt/dist/app/entry.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "layouts/default.vue",
+      "layouts/thames.vue",
+      "_KOyCxTzY.js",
+      "_CMBzZwn6.js",
+      "node_modules/nuxt/dist/app/components/error-404.vue",
+      "node_modules/nuxt/dist/app/components/error-500.vue"
+    ],
+    "_globalCSS": true
+  },
+  "pages/about.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "DNPXqPd2.js",
+    "name": "about",
+    "src": "pages/about.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_B4jJlrkj.js",
+      "node_modules/nuxt/dist/app/entry.js",
+      "_RHHml51R.js"
+    ]
+  },
+  "pages/index.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "ytOxbgyS.js",
+    "name": "index",
+    "src": "pages/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_DGf6p6e0.js",
+      "node_modules/nuxt/dist/app/entry.js",
+      "_x_rD_Ya3.js",
+      "_B4jJlrkj.js",
+      "_D6-XlEtG.js",
+      "_RHHml51R.js"
+    ],
+    "dynamicImports": [
+      "_DiUUXkzl.js"
+    ],
+    "css": [
+      "index.CWoRe5I1.css"
+    ]
+  },
+  "index.CWoRe5I1.css": {
+    "file": "index.CWoRe5I1.css",
+    "resourceType": "style",
+    "prefetch": true,
+    "preload": true
+  },
+  "pages/login.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "CLbV1S5U.js",
+    "name": "login",
+    "src": "pages/login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_CYyLyjK-.js",
+      "node_modules/nuxt/dist/app/entry.js"
+    ],
+    "css": []
+  },
+  "login.DtwnzCQ2.css": {
+    "file": "login.DtwnzCQ2.css",
+    "resourceType": "style",
+    "prefetch": true,
+    "preload": true
+  },
+  "pages/news/index.vue": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "Ca5u_MMQ.js",
+    "name": "index",
+    "src": "pages/news/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_DGf6p6e0.js",
+      "node_modules/nuxt/dist/app/entry.js",
+      "_RHHml51R.js"
+    ]
+  },
+  "public/fonts/fa-brands-400.eot": {
+    "resourceType": "font",
+    "mimeType": "font/eot",
+    "file": "fa-brands-400.C-iQJpCR.eot",
+    "src": "public/fonts/fa-brands-400.eot"
+  },
+  "public/fonts/fa-brands-400.svg": {
+    "resourceType": "image",
+    "prefetch": true,
+    "mimeType": "image/svg+xml",
+    "file": "fa-brands-400.CzqYCMR5.svg",
+    "src": "public/fonts/fa-brands-400.svg"
+  },
+  "public/fonts/fa-brands-400.ttf": {
+    "resourceType": "font",
+    "mimeType": "font/ttf",
+    "file": "fa-brands-400.1LCZoutt.ttf",
+    "src": "public/fonts/fa-brands-400.ttf"
+  },
+  "public/fonts/fa-brands-400.woff": {
+    "resourceType": "font",
+    "mimeType": "font/woff",
+    "file": "fa-brands-400.CTJWUYSo.woff",
+    "src": "public/fonts/fa-brands-400.woff"
+  },
+  "public/fonts/fa-brands-400.woff2": {
+    "resourceType": "font",
+    "mimeType": "font/woff2",
+    "file": "fa-brands-400.DyqHY0vb.woff2",
+    "src": "public/fonts/fa-brands-400.woff2"
+  },
+  "public/fonts/fa-duotone-900.eot": {
+    "resourceType": "font",
+    "mimeType": "font/eot",
+    "file": "fa-duotone-900.Bsff8rki.eot",
+    "src": "public/fonts/fa-duotone-900.eot"
+  },
+  "public/fonts/fa-duotone-900.svg": {
+    "resourceType": "image",
+    "prefetch": true,
+    "mimeType": "image/svg+xml",
+    "file": "fa-duotone-900.CKuhQMeB.svg",
+    "src": "public/fonts/fa-duotone-900.svg"
+  },
+  "public/fonts/fa-duotone-900.ttf": {
+    "resourceType": "font",
+    "mimeType": "font/ttf",
+    "file": "fa-duotone-900.B0J3lqjR.ttf",
+    "src": "public/fonts/fa-duotone-900.ttf"
+  },
+  "public/fonts/fa-duotone-900.woff": {
+    "resourceType": "font",
+    "mimeType": "font/woff",
+    "file": "fa-duotone-900.DU07G7t-.woff",
+    "src": "public/fonts/fa-duotone-900.woff"
+  },
+  "public/fonts/fa-duotone-900.woff2": {
+    "resourceType": "font",
+    "mimeType": "font/woff2",
+    "file": "fa-duotone-900.Lzn60gzC.woff2",
+    "src": "public/fonts/fa-duotone-900.woff2"
+  },
+  "public/fonts/fa-light-300.eot": {
+    "resourceType": "font",
+    "mimeType": "font/eot",
+    "file": "fa-light-300.B5GAwEbg.eot",
+    "src": "public/fonts/fa-light-300.eot"
+  },
+  "public/fonts/fa-light-300.svg": {
+    "resourceType": "image",
+    "prefetch": true,
+    "mimeType": "image/svg+xml",
+    "file": "fa-light-300.BwPZTawo.svg",
+    "src": "public/fonts/fa-light-300.svg"
+  },
+  "public/fonts/fa-light-300.ttf": {
+    "resourceType": "font",
+    "mimeType": "font/ttf",
+    "file": "fa-light-300.C7qW5PBp.ttf",
+    "src": "public/fonts/fa-light-300.ttf"
+  },
+  "public/fonts/fa-light-300.woff": {
+    "resourceType": "font",
+    "mimeType": "font/woff",
+    "file": "fa-light-300.hRZb1LI-.woff",
+    "src": "public/fonts/fa-light-300.woff"
+  },
+  "public/fonts/fa-light-300.woff2": {
+    "resourceType": "font",
+    "mimeType": "font/woff2",
+    "file": "fa-light-300.DUiz1fJe.woff2",
+    "src": "public/fonts/fa-light-300.woff2"
+  },
+  "public/fonts/fa-regular-400.eot": {
+    "resourceType": "font",
+    "mimeType": "font/eot",
+    "file": "fa-regular-400.DzfeDjDt.eot",
+    "src": "public/fonts/fa-regular-400.eot"
+  },
+  "public/fonts/fa-regular-400.svg": {
+    "resourceType": "image",
+    "prefetch": true,
+    "mimeType": "image/svg+xml",
+    "file": "fa-regular-400.tjnNGu4J.svg",
+    "src": "public/fonts/fa-regular-400.svg"
+  },
+  "public/fonts/fa-regular-400.ttf": {
+    "resourceType": "font",
+    "mimeType": "font/ttf",
+    "file": "fa-regular-400.m2U_xFW_.ttf",
+    "src": "public/fonts/fa-regular-400.ttf"
+  },
+  "public/fonts/fa-regular-400.woff": {
+    "resourceType": "font",
+    "mimeType": "font/woff",
+    "file": "fa-regular-400.BvGnqat1.woff",
+    "src": "public/fonts/fa-regular-400.woff"
+  },
+  "public/fonts/fa-regular-400.woff2": {
+    "resourceType": "font",
+    "mimeType": "font/woff2",
+    "file": "fa-regular-400.Bl4gLh85.woff2",
+    "src": "public/fonts/fa-regular-400.woff2"
+  },
+  "public/fonts/fa-solid-900.eot": {
+    "resourceType": "font",
+    "mimeType": "font/eot",
+    "file": "fa-solid-900.DqTCZKyg.eot",
+    "src": "public/fonts/fa-solid-900.eot"
+  },
+  "public/fonts/fa-solid-900.svg": {
+    "resourceType": "image",
+    "prefetch": true,
+    "mimeType": "image/svg+xml",
+    "file": "fa-solid-900.1pIHZQjp.svg",
+    "src": "public/fonts/fa-solid-900.svg"
+  },
+  "public/fonts/fa-solid-900.ttf": {
+    "resourceType": "font",
+    "mimeType": "font/ttf",
+    "file": "fa-solid-900.BJy4SilD.ttf",
+    "src": "public/fonts/fa-solid-900.ttf"
+  },
+  "public/fonts/fa-solid-900.woff": {
+    "resourceType": "font",
+    "mimeType": "font/woff",
+    "file": "fa-solid-900.7a1Wx55o.woff",
+    "src": "public/fonts/fa-solid-900.woff"
+  },
+  "public/fonts/fa-solid-900.woff2": {
+    "resourceType": "font",
+    "mimeType": "font/woff2",
+    "file": "fa-solid-900.CbpGwXA9.woff2",
+    "src": "public/fonts/fa-solid-900.woff2"
+  },
+  "public/fonts/flaticon-font/flaticon.svg": {
+    "resourceType": "image",
+    "prefetch": true,
+    "mimeType": "image/svg+xml",
+    "file": "flaticon.DVhYOlaU.svg",
+    "src": "public/fonts/flaticon-font/flaticon.svg"
+  }
+};
+
+export { client_manifest as default };
+//# sourceMappingURL=client.manifest.mjs.map
