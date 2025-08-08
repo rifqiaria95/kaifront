@@ -14,9 +14,9 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8000/api',
-      authBase: process.env.NUXT_PUBLIC_AUTH_BASE || 'http://localhost:8000/api/auth',
-      storageBase: process.env.NUXT_PUBLIC_STORAGE_BASE || 'http://localhost:8000',
+      apiBase: process.env.NUXT_PUBLIC_API_BASE,
+      authBase: process.env.NUXT_PUBLIC_AUTH_BASE,
+      storageBase: process.env.NUXT_PUBLIC_STORAGE_BASE,
     }
   },
   imports: {
