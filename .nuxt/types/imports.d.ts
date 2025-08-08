@@ -17,6 +17,7 @@ declare global {
   const defineAppConfig: typeof import('../../node_modules/nuxt/dist/app/nuxt')['defineAppConfig']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
+  const defineLazyHydrationComponent: typeof import('../../node_modules/nuxt/dist/app/composables/lazy-hydration')['defineLazyHydrationComponent']
   const defineNuxtComponent: typeof import('../../node_modules/nuxt/dist/app/composables/component')['defineNuxtComponent']
   const defineNuxtLink: typeof import('../../node_modules/nuxt/dist/app/components/nuxt-link')['defineNuxtLink']
   const defineNuxtPlugin: typeof import('../../node_modules/nuxt/dist/app/nuxt')['defineNuxtPlugin']
@@ -67,6 +68,7 @@ declare global {
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const onWatcherCleanup: typeof import('vue')['onWatcherCleanup']
   const prefetchComponents: typeof import('../../node_modules/nuxt/dist/app/composables/preload')['prefetchComponents']
   const preloadComponents: typeof import('../../node_modules/nuxt/dist/app/composables/preload')['preloadComponents']
   const preloadPayload: typeof import('../../node_modules/nuxt/dist/app/composables/payload')['preloadPayload']
@@ -213,6 +215,7 @@ declare module 'vue' {
     readonly defineAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/nuxt')['defineAppConfig']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly defineLazyHydrationComponent: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/lazy-hydration')['defineLazyHydrationComponent']>
     readonly defineNuxtComponent: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/component')['defineNuxtComponent']>
     readonly defineNuxtLink: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/components/nuxt-link')['defineNuxtLink']>
     readonly defineNuxtPlugin: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/nuxt')['defineNuxtPlugin']>
@@ -263,6 +266,7 @@ declare module 'vue' {
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly onWatcherCleanup: UnwrapRef<typeof import('vue')['onWatcherCleanup']>
     readonly prefetchComponents: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/preload')['prefetchComponents']>
     readonly preloadComponents: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/preload')['preloadComponents']>
     readonly preloadPayload: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/payload')['preloadPayload']>

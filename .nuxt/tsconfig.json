@@ -73,8 +73,14 @@
       "#shared": [
         "../shared"
       ],
+      "#shared/*": [
+        "../shared/*"
+      ],
       "assets": [
         "../assets"
+      ],
+      "assets/*": [
+        "../assets/*"
       ],
       "public": [
         "../public"
@@ -101,7 +107,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/68f2e517-89d2-4ce2-93a0-bda4034d01da.json"
+        "./manifest/meta/e86e668c-c3b0-492b-830c-81ae446a6f46"
       ],
       "#components": [
         "./components"
@@ -145,12 +151,8 @@
     "../**/*",
     "../.config/nuxt.*",
     "./nuxt.d.ts",
-    "../node_modules/@pinia/nuxt/runtime",
-    "../node_modules/@pinia/nuxt/dist/runtime",
-    "../node_modules/@nuxt/devtools/runtime",
-    "../node_modules/@nuxt/devtools/dist/runtime",
-    "../node_modules/@nuxt/telemetry/runtime",
-    "../node_modules/@nuxt/telemetry/dist/runtime",
+    "../node_modules/runtime",
+    "../node_modules/dist/runtime",
     ".."
   ],
   "exclude": [
@@ -161,12 +163,8 @@
     "../node_modules/@pinia/nuxt/node_modules",
     "../node_modules/@nuxt/devtools/node_modules",
     "../node_modules/@nuxt/telemetry/node_modules",
-    "../node_modules/@pinia/nuxt/runtime/server",
-    "../node_modules/@pinia/nuxt/dist/runtime/server",
-    "../node_modules/@nuxt/devtools/runtime/server",
-    "../node_modules/@nuxt/devtools/dist/runtime/server",
-    "../node_modules/@nuxt/telemetry/runtime/server",
-    "../node_modules/@nuxt/telemetry/dist/runtime/server",
+    "../node_modules/runtime/server",
+    "../node_modules/dist/runtime/server",
     "../.output"
   ]
 }
