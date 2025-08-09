@@ -6,9 +6,9 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="title text-center">
               <span class="theme-color text-uppercase d-block mb-6"
-                >Contact Me</span
+                >Kontak Saya</span
               >
-              <h2>Let's Start A New Project</h2>
+              <h2>Hubungi Saya</h2>
             </div>
             <!-- /title -->
           </div>
@@ -31,8 +31,8 @@
                   </div>
                   <!-- /contact-icon -->
                   <div class="contact-text d-inline-block">
-                    <h4 class="mb-2">Location</h4>
-                    <p class="text-color mb-0">20 Bordeshi, London, Usa</p>
+                    <h4 class="mb-2">Alamat</h4>
+                    <p class="text-color mb-0">Jakarta, Indonesia</p>
                   </div>
                 </li>
                 <!-- /contact-location -->
@@ -48,10 +48,10 @@
                   </div>
                   <!-- /contact-icon -->
                   <div class="contact-text">
-                    <h4 class="mb-2">Phone</h4>
+                    <h4 class="mb-2">Telepon</h4>
                     <p class="mb-0">
                       <a class="text-color primary-hover d-block" href="#"
-                        >+123 456 7890</a
+                        >+62 812 3456 7890</a
                       >
                     </p>
                   </div>
@@ -72,7 +72,7 @@
                     <h4 class="mb-2">Email</h4>
                     <p class="mb-0">
                       <a class="text-color primary-hover d-block" href="#"
-                        >hello@thames.com</a
+                        >sellygantina18@gmail.com</a
                       >
                     </p>
                   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="pricing-area over-hidden pt-160 pb-140" :class="bg">
+  <div class="pricing-area over-hidden pt-160 pb-140 mt-100" :class="bg">
     <div class="container">
       <div class="row align-items-start">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -117,8 +117,11 @@ const handleRegister = (program) => {
 
   // Cek apakah user memiliki role guest
   if (hasRole('guest')) {
-    // Redirect ke halaman registration-program
-    navigateTo('http://localhost:8000/registration-program')
+    // Redirect ke halaman registration-program dengan link otomatis sesuai environment
+    const baseUrl = process.env.NODE_ENV === 'production'
+      ? 'https://development.sellygantina.com'
+      : 'http://localhost:8000'
+    navigateTo(`${baseUrl}/registration-program`)
     return
   }
 

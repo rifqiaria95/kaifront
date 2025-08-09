@@ -1,12 +1,19 @@
 <template>
   <div class="brand-area brand-height over-hidden">
     <div class="container">
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="title text-center mb-65">
+            <span class="theme-color f-700 text-uppercase d-block mb-6"
+              >Dukungan</span
+            >
+            <h2 class="text-uppercase">Terima Kasih Kepada</h2>
+          </div>
+          <!-- /title -->
           <client-only>
             <Swiper
-              :autoplay="{ delay: 8000, disableOnInteraction: true }"
-              :navigation="true"
+              :autoplay="{ delay: 1000, disableOnInteraction: true }"
+              :navigation="false"
               :pagination="{ clickable: true }"
               :breakpoints="{
                 1025: {

@@ -6,9 +6,9 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="title text-center mb-65">
               <span class="theme-color f-700 text-uppercase d-block mb-6"
-                >Portfolio</span
+                >Dokumentasi Kegiatan Saya</span
               >
-              <h2 class="text-uppercase">My Works</h2>
+              <h2 class="text-uppercase">Galeri</h2>
             </div>
             <!-- /title -->
           </div>

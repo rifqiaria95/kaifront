@@ -9,6 +9,8 @@ export default defineNuxtPlugin(() => {
           news: () => 'http://localhost:8000/api/news',
           chatbot: () => 'http://localhost:8000/api/chatbot',
           chat: () => 'http://localhost:8000/api/chat',
+          registrationProgram: () => 'http://localhost:8000/api/registration-program',
+          program: () => 'http://localhost:8000/api/programs/open',
           about: () => 'http://localhost:8000/api/about',
           education: () => 'http://localhost:8000/api/education',
           getImageUrl: (imagePath: string | null | undefined) => {
@@ -45,6 +47,10 @@ export default defineNuxtPlugin(() => {
     chatbot: () => `${apiBase}/chatbot`,
     // Chat endpoint untuk conversation
     chat: () => `${apiBase}/chat`,
+    // Registration Program endpoint
+    registrationProgram: () => `${apiBase}/registration-program`,
+    // Program endpoint
+    program: () => `${apiBase}/programs/open`,
     // About endpoint
     about: () => `${apiBase}/about`,
     // Education endpoint

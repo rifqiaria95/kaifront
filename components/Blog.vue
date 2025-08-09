@@ -49,7 +49,7 @@
         <!-- News Content -->
         <client-only v-else-if="newsData">
           <Swiper
-            :autoplay="{ delay: 8000, disableOnInteraction: true }"
+            :autoplay="{ delay: 1000, disableOnInteraction: true }"
             :navigation="false"
             :pagination="{ clickable: true }"
             :slides-per-view="3"

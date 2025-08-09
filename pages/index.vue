@@ -10,11 +10,11 @@
     <Chatbot />
     <About2 :signature="'/images/index-4/signature.png'" />
     <Counter />
-    <Portfolio2 />
+    <Blog :classic="true" :bg="'secondary-bg'" />
+    <Galeri />
     <Award :bg="'secondary-bg'" />
     <Experience />
     <Education :imgGrayScale="true" />
-    <Skill2 />
     <Program :bg="'secondary-bg'" />
     <Service :bg="''" :titleColor="''" :items="serviceItems" :classic="true" />
     <Testimonials
@@ -24,7 +24,6 @@
     />
     <Brand />
     <Contact />
-    <Blog :classic="true" :bg="'secondary-bg'" />
   </NuxtLayout>
 </template>
 

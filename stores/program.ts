@@ -1,3 +1,5 @@
+import { useNuxtApp } from '#app'
+
 export const useProgramStore = defineStore('program', {
   state: () => ({
     programs: [] as any[],
@@ -9,12 +11,10 @@ export const useProgramStore = defineStore('program', {
     async fetchOpenPrograms() {
       this.loading = true;
       this.error = null;
-      
+
       try {
-        const response: any = await $fetch('/api/programs/open', {
-          baseURL: 'http://localhost:8000'
-        });
-        
+        const { $api } = useNuxtApp();
+        const response: any = await $fetch(`${$api.program()}`);
         this.programs = response.data || [];
       } catch (error: any) {
         this.error = error.message || 'Terjadi kesalahan saat mengambil data program';

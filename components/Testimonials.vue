@@ -7,9 +7,9 @@
             <div class="position-relative">
               <div class="title">
                 <span class="theme-color text-uppercase d-block mb-6"
-                  >Testimonials</span
+                  >Apa Kata Mereka</span
                 >
-                <h2 class="mb-20">What People Say</h2>
+                <h2 class="mb-20">Testimoni</h2>
               </div>
               <!-- /title -->
             </div>
@@ -20,8 +20,8 @@
               <div class="testimonial-active pl-80 pr-90">
                 <client-only>
                   <Swiper
-                    :autoplay="{ delay: 8000, disableOnInteraction: true }"
-                    :navigation="true"
+                    :autoplay="{ delay: 1000, disableOnInteraction: true }"
+                    :navigation="false"
                     :pagination="{ clickable: true }"
                     :slides-per-view="1"
                     :loop="true"

@@ -32,12 +32,11 @@
             <div
               class="mr-25 d-flex align-content-start justify-content-center"
             >
-              <span class="theme-color f-700 d-inline-block counter">200</span>
+              <span class="theme-color f-700 d-inline-block counter">5</span>
               <span class="per d-inline-block f-700 theme-color mt-1">+</span>
             </div>
             <h3 class="text-white f-700 text-uppercase mb-0">
-              Worldwide <br />
-              Clients
+              Organisasi
             </h3>
           </div>
           <!-- /single-fact -->
