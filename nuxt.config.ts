@@ -6,6 +6,12 @@ export default defineNuxtConfig({
     enabled: true
   },
   
+  // Konfigurasi dev server
+  devServer: {
+    port: 3000,
+    host: 'localhost'
+  },
+  
   modules: [
     '@pinia/nuxt',
   ],
@@ -47,7 +53,21 @@ export default defineNuxtConfig({
     baseURL: '/',
     head: {
       title: 'Selly Andriany Gantina',
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      htmlAttrs: {
+        lang: 'id'
+      },
+      meta: [
+        { name: 'description', content: 'Selly Andriany Gantina - Anggota Dewan Perwakilan Rakyat Indonesia 2024-2029' },
+        { name: 'keywords', content: 'Selly Andriany Gantina, Dewan Perwakilan Rakyat Indonesia, Anggota Dewan Perwakilan Rakyat Indonesia 2024-2029' },
+        { name: 'author', content: 'Selly Andriany Gantina' },
+        { name: 'robots', content: 'index, follow' },
+        { name: 'googlebot', content: 'index, follow' },
+        { name: 'google', content: 'notranslate' },
+      ],
       link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/icon.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap' }

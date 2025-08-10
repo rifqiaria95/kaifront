@@ -6,11 +6,11 @@
           <div class="row align-items-center">
             <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-5">
               <div class="logo mt-50 mb-50 transition5">
-                <a class="header-logo" href="#"
-                  ><img :src="logo" alt="THAMES"
+                <a class="header-logo" href="/"
+                  ><img :src="logo" alt="Selly"
                 /></a>
                 <a class="header-sticky-logo" href="#" v-if="logo2.length > 0"
-                  ><img :src="logo2" alt="HIBRO"
+                  ><img :src="logo2" alt="Gantina"
                 /></a>
               </div>
             </div>
@@ -35,8 +35,46 @@
                         </li>
                       </ul>
                     </li>
-                    <li>
-                      <a href="#program">Program</a>
+                    <li class="menu-item-has-children">
+                      <a href="#">Program <i class="fa fa-angle-down"></i></a>
+                      <ul class="submenu">
+                        <li>
+                          <a href="#">Capaian</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                          <a href="#">Mitra Kerja&nbsp;&nbsp;<i class="fa fa-angle-right" style="font-size: 1.1em;"></i></a>
+                          <ul class="submenu">
+                            <li>
+                              <a href="https://kemenag.go.id/">Kementrian Agama</a>
+                            </li>
+                            <br>
+                            <li>
+                              <a href="https://kemensos.go.id/">Kementrian Sosial</a>
+                            </li>
+                            <li>
+                              <a href="https://www.kemenpppa.go.id/">Kementrian Pemberdayaan Perempuan</a>
+                            </li>
+                            <li>
+                              <a href="https://www.bnpb.go.id/">Badan Nasional Penanggulangan Bencana (BNPB)</a>
+                            </li>
+                            <li>
+                              <a href="https://kpa.go.id/">Komisi Perlindungan Anak Indonesia (KPAI)</a>
+                            </li>
+                            <li>
+                              <a href="https://baznas.go.id/">Badan Amil Zakat Nasional (BAZNAS)</a>
+                            </li>
+                            <li>
+                              <a href="https://bwi.go.id/">Badan Wakaf Indonesia (BWI)</a>
+                            </li>
+                            <li>
+                              <a href="https://bpkh.go.id/">Badan Pengelola Keuangan Haji (BPKH)</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#visimisi">Partai</a>
+                        </li>
+                      </ul>
                     </li>
                     <li>
                       <a href="#pengalaman">Pengalaman</a>
@@ -347,7 +385,9 @@ export default {
 }
 
 .submenu li a {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 12px 20px;
   color: #333;
   text-decoration: none;
@@ -572,6 +612,43 @@ export default {
     visibility: hidden;
     transform: translateY(-10px);
   }
+}
+
+/* =====================
+   Level-3 submenu (opens to the right)
+   ===================== */
+/* Parent li must be positioning context */
+.submenu > li {
+  position: relative;
+}
+
+/* Show level-3 when hovering second-level item */
+.submenu > li.menu-item-has-children:hover > .submenu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Override for nested submenu (level-3) */
+.submenu .submenu {
+  top: 0;
+  left: 100%;
+  transform: none;
+  padding-top: 0;
+  padding-left: 20px; /* hover bridge on the left */
+  min-width: 240px;
+}
+
+/* White panel starts after the left padding so we get a hover bridge */
+.submenu .submenu::after {
+  top: 0;
+  left: 20px;
+}
+
+/* Icon sizing in nested items */
+.submenu .menu-item-has-children > a i.fa {
+  font-size: 12px;
+  opacity: 0.7;
 }
 
 </style>

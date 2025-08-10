@@ -16,8 +16,8 @@
               <span class="theme-color f-700 d-inline-block counter">12</span>
             </div>
             <h3 class="text-white f-700 text-uppercase mb-0">
-              Years of <br />
-              Experience
+              Tahun di <br>
+              dunia politik
             </h3>
           </div>
           <!-- /single-fact -->

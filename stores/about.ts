@@ -6,6 +6,7 @@ interface AboutData {
   subtitle   : string
   description: string
   image      : string
+  image_url  : string
   video      : string
   address    : string
   phone      : string
