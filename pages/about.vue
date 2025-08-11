@@ -54,8 +54,8 @@
         <div v-else class="content-grid">
           <!-- Image Placeholder -->
           <div class="image-section">
-            <div v-if="aboutData?.image" class="image-container">
-              <img :src="$api?.getImageUrl(aboutData.image)" :alt="aboutData.title" class="about-image">
+            <div v-if="aboutData?.image_url" class="image-container">
+              <img :src="aboutData.image_url" :alt="aboutData.title" class="about-image">
             </div>
             <div v-else class="image-placeholder">
               <span class="image-text">Image</span>
