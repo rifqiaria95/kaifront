@@ -23,7 +23,7 @@ export default defineNuxtPlugin(() => {
     about: () => `${apiBase}/about`,
     // Education endpoint
     education: () => `${apiBase}/education`,
-    // Image helper dengan perbaikan untuk production
+    // Image helper dengan perbaikan untuk production dan hindari double slash
     getImageUrl: (imagePath: string | null | undefined) => {
       if (!imagePath) {
         return '/images/about/about-img.jpg'
@@ -39,8 +39,9 @@ export default defineNuxtPlugin(() => {
         return imagePath
       }
       
-      // Gunakan storageBase untuk production yang benar
-      return `${storageBase}/api/images/${imagePath}`
+      // Gunakan storageBase untuk production yang benar dan hindari double slash
+      const cleanStorageBase = storageBase.endsWith('/') ? storageBase.slice(0, -1) : storageBase;
+      return `${cleanStorageBase}/api/images/${imagePath}`
     }
   };
 

@@ -190,19 +190,19 @@
 
   // Computed untuk image URL
   const imageUrl = computed(() => {
-    // Jika ada image_url dari API dan tidak null, gunakan itu
+    // Jika ada image_url dari API dan tidak null, gunakan itu (ini adalah Storage URL)
     if (aboutData.value?.image_url) {
       return aboutData.value.image_url
     }
     
     // Jika ada image field tapi image_url null (file tidak ada), gunakan default
     if (aboutData.value?.image && !aboutData.value?.image_url) {
-      console.warn('Image file not found:', aboutData.value.image)
+      console.warn('Image file not found in storage:', aboutData.value.image)
       return '/images/about/about-img.jpg'
     }
     
-    // Fallback ke fungsi getImageUrl
-    return getImageUrl(aboutData.value ? aboutData.value.image : null)
+    // Fallback ke default image
+    return '/images/about/about-img.jpg'
   })
 
   // Functions
@@ -216,26 +216,19 @@
       return '/images/about/about-img.jpg'
     }
 
-    // Pastikan $api tersedia (untuk SSR)
-    if (!$api) {
-      // Jika image path sudah full URL
-      if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-        return imagePath
-      }
-
-      // Jika image path dimulai dengan slash, gunakan sebagai path relatif
-      if (imagePath.startsWith('/')) {
-        return imagePath
-      }
-
-      // Fallback ke API endpoint yang benar dengan environment detection
-      const baseUrl = process.env.NODE_ENV === 'production' 
-        ? 'https://your-production-domain.com' 
-        : 'http://localhost:8000'
-      return `${baseUrl}/api/images/${imagePath}`
+    // Jika image path sudah full URL (Storage URL)
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+      return imagePath
     }
 
-    return $api.getImageUrl(imagePath)
+    // Jika image path dimulai dengan slash, gunakan sebagai path relatif
+    if (imagePath.startsWith('/')) {
+      return imagePath
+    }
+
+    // Untuk path storage, gunakan Storage URL dari Laravel
+    // Ini akan dihandle oleh AboutController yang sudah menggunakan Storage::disk('public')->url()
+    return '/images/about/about-img.jpg' // Fallback ke default
   }
 
   const handleImageError = (event) => {
