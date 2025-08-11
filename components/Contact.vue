@@ -6,7 +6,7 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="title text-center">
               <span class="theme-color text-uppercase d-block mb-6"
-                >Kontak Saya</span
+                >Kontak</span
               >
               <h2>Hubungi Saya</h2>
             </div>

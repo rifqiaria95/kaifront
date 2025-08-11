@@ -3,10 +3,10 @@
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig();
 
-  // Sinkronkan dengan .env dan nuxt.config.ts dengan fallback
-  const apiBase = config.public.apiBase || 'http://localhost:8000/api';
-  const authBase = config.public.authBase || 'http://localhost:8000/api/auth';
-  const storageBase = config.public.storageBase || 'http://localhost:8000';
+  // Sinkronkan dengan .env dan nuxt.config.ts dengan fallback yang lebih baik untuk production
+  const apiBase = config.public.apiBase || (process.env.NODE_ENV === 'production' ? 'https://your-production-domain.com/api' : 'http://localhost:8000/api');
+  const authBase = config.public.authBase || (process.env.NODE_ENV === 'production' ? 'https://your-production-domain.com/api/auth' : 'http://localhost:8000/api/auth');
+  const storageBase = config.public.storageBase || (process.env.NODE_ENV === 'production' ? 'https://your-production-domain.com' : 'http://localhost:8000');
 
   // Endpoint helper
   const api = {
@@ -23,7 +23,7 @@ export default defineNuxtPlugin(() => {
     about: () => `${apiBase}/about`,
     // Education endpoint
     education: () => `${apiBase}/education`,
-    // Image helper dengan fallback yang lebih baik
+    // Image helper dengan perbaikan untuk production
     getImageUrl: (imagePath: string | null | undefined) => {
       if (!imagePath) {
         return '/images/about/about-img.jpg'
@@ -39,8 +39,8 @@ export default defineNuxtPlugin(() => {
         return imagePath
       }
       
-      // Gunakan API endpoint untuk gambar
-      return `${apiBase.replace('/api', '')}/api/images/${imagePath}`
+      // Gunakan storageBase untuk production yang benar
+      return `${storageBase}/api/images/${imagePath}`
     }
   };
 

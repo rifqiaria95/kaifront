@@ -228,8 +228,11 @@
         return imagePath
       }
 
-      // Fallback ke API endpoint yang benar
-      return `http://localhost:8000/api/images/${imagePath}`
+      // Fallback ke API endpoint yang benar dengan environment detection
+      const baseUrl = process.env.NODE_ENV === 'production' 
+        ? 'https://your-production-domain.com' 
+        : 'http://localhost:8000'
+      return `${baseUrl}/api/images/${imagePath}`
     }
 
     return $api.getImageUrl(imagePath)
