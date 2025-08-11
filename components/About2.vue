@@ -129,10 +129,6 @@
                       <span class="label">Email:</span>
                       <span class="value">{{ aboutData?.email || 'sellygantina18@gmail.com' }}</span>
                     </div>
-                    <div class="about-info-item mb-3">
-                      <span class="label">Agama:</span>
-                      <span class="value">Islam</span>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -188,8 +188,6 @@ const handleImageLoad = () => {
   background-color: #fff;
 }
 
-
-
 /* Hero Section */
 .hero-section {
   position: relative;
@@ -555,6 +553,7 @@ const handleImageLoad = () => {
 /* Responsive Design */
 @media (max-width: 768px) {
   .hero-background {
+    margin-top: 0;
     background-position: center center;
   }
   .content-grid {
@@ -582,7 +581,6 @@ const handleImageLoad = () => {
   }
   
   .hero-section {
-    margin-top: 60px;
     height: 40vh;
   }
   
@@ -601,6 +599,7 @@ const handleImageLoad = () => {
 
 @media (max-width: 480px) {
   .hero-background {
+    margin-top: 0;
     background-position: center center;
   }
   .content-grid {

@@ -28,7 +28,6 @@ interface _GlobalComponents {
     'Footer': typeof import("../components/Footer.vue")['default']
     'FunFact': typeof import("../components/FunFact.vue")['default']
     'Galeri': typeof import("../components/Galeri.vue")['default']
-    'Header': typeof import("../components/Header.vue")['default']
     'Home': typeof import("../components/Home.vue")['default']
     'Intro': typeof import("../components/Intro.vue")['default']
     'Portfolio': typeof import("../components/Portfolio.vue")['default']
@@ -83,7 +82,6 @@ interface _GlobalComponents {
     'LazyFooter': LazyComponent<typeof import("../components/Footer.vue")['default']>
     'LazyFunFact': LazyComponent<typeof import("../components/FunFact.vue")['default']>
     'LazyGaleri': LazyComponent<typeof import("../components/Galeri.vue")['default']>
-    'LazyHeader': LazyComponent<typeof import("../components/Header.vue")['default']>
     'LazyHome': LazyComponent<typeof import("../components/Home.vue")['default']>
     'LazyIntro': LazyComponent<typeof import("../components/Intro.vue")['default']>
     'LazyPortfolio': LazyComponent<typeof import("../components/Portfolio.vue")['default']>
@@ -144,7 +142,6 @@ export const Experience: typeof import("../components/Experience.vue")['default'
 export const Footer: typeof import("../components/Footer.vue")['default']
 export const FunFact: typeof import("../components/FunFact.vue")['default']
 export const Galeri: typeof import("../components/Galeri.vue")['default']
-export const Header: typeof import("../components/Header.vue")['default']
 export const Home: typeof import("../components/Home.vue")['default']
 export const Intro: typeof import("../components/Intro.vue")['default']
 export const Portfolio: typeof import("../components/Portfolio.vue")['default']
@@ -199,7 +196,6 @@ export const LazyExperience: LazyComponent<typeof import("../components/Experien
 export const LazyFooter: LazyComponent<typeof import("../components/Footer.vue")['default']>
 export const LazyFunFact: LazyComponent<typeof import("../components/FunFact.vue")['default']>
 export const LazyGaleri: LazyComponent<typeof import("../components/Galeri.vue")['default']>
-export const LazyHeader: LazyComponent<typeof import("../components/Header.vue")['default']>
 export const LazyHome: LazyComponent<typeof import("../components/Home.vue")['default']>
 export const LazyIntro: LazyComponent<typeof import("../components/Intro.vue")['default']>
 export const LazyPortfolio: LazyComponent<typeof import("../components/Portfolio.vue")['default']>
