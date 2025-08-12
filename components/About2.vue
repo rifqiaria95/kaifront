@@ -116,18 +116,18 @@
                       <span class="value">Hj. Selly Andriany Gantina</span>
                     </div>
                     <div class="about-info-item mb-3">
-                      <span class="label">Alamat:</span>
-                      <span class="value">Jl. Raya Cikarang, No. 123, Jakarta</span>
+                      <span class="label">Tempat Tanggal Lahir:</span>
+                      <span class="value">Bandung, 20 Desember 1976</span>
                     </div>
                   </div>
                   <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12 col-12">
                     <div class="about-info-item mb-3">
-                      <span class="label">No. HP:</span>
-                      <span class="value">{{ aboutData?.phone || '081210396214' }}</span>
+                      <span class="label">Partai Politik:</span>
+                      <span class="value">PDI-P</span>
                     </div>
                     <div class="about-info-item mb-3">
-                      <span class="label">Email:</span>
-                      <span class="value">{{ aboutData?.email || 'sellygantina18@gmail.com' }}</span>
+                      <span class="label">Pekerjaan:</span>
+                      <span class="value">Politikus</span>
                     </div>
                   </div>
                 </div>

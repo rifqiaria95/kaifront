@@ -352,16 +352,21 @@ export default {
       this.fetchUser();
     }
 
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!this.$el.querySelector('.user-menu')?.contains(e.target)) {
+    // Close dropdown when clicking outside - menggunakan method yang tepat
+    this.handleOutsideClick = (e) => {
+      const userMenu = document.querySelector('.user-menu');
+      if (userMenu && !userMenu.contains(e.target)) {
         this.userDropdownOpen = false;
       }
-    });
+    };
+    
+    document.addEventListener('click', this.handleOutsideClick);
   },
   beforeUnmount() {
     // Remove event listener
-    document.removeEventListener('click', this.handleOutsideClick);
+    if (this.handleOutsideClick) {
+      document.removeEventListener('click', this.handleOutsideClick);
+    }
   },
   props: {
     logo: {

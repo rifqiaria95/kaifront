@@ -202,7 +202,7 @@ export default {
         // Use the news data array directly from the store
         this.newsData = this.newsStore.getNewsData;
       } catch (error) {
-        console.error('Error fetching news:', error);
+        console.error('Blog: Error fetching news:', error);
       }
     },
     

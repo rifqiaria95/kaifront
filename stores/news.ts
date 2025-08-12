@@ -61,6 +61,7 @@ export const useNewsStore = defineStore('news', {
           throw new Error('Format response tidak valid')
         }
       } catch (error) {
+        console.error('Error fetching news:', error)
         const errorMessage = error instanceof Error ? error.message : 'Unknown error'
         this.error = `Gagal memuat data news: ${errorMessage}`
         this.newsData = []

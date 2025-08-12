@@ -1,4 +1,5 @@
 <template>
+  <Preloader />
   <div class="about-page">
     <!-- Header -->
     <Header 
@@ -6,7 +7,8 @@
       :logo2="'/images/index-4/black-logo.png'"
       :downloadBtn="true"
     />
-
+    <Chatbot />
+    <ScrollTop />
     <!-- Hero Image Section -->
     <section class="hero-section">
       <div class="hero-background">
@@ -30,7 +32,7 @@
     <section class="breadcrumb-section">
       <div class="container">
         <div class="breadcrumb-container">
-          <span class="breadcrumb-text">Beranda / Profil / Tentang Saya</span>
+          <span class="breadcrumb-text"><a class="breadcrumb-link" href="/">Beranda</a> / <a class="breadcrumb-link" href="#">Profil</a> / <a class="breadcrumb-link" href="/about">Tentang Saya</a></span>
         </div>
       </div>
     </section>
@@ -284,6 +286,11 @@ const handleImageLoad = () => {
   margin-left: 0;
   /* Sejajar dengan logo header */
   padding-left: 0;
+}
+
+.breadcrumb-link {
+  color: white;
+  text-decoration: none;
 }
 
 .breadcrumb-text {

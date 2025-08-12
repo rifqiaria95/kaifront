@@ -18,10 +18,14 @@
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
             <div class="port-button mb-50 portfolio-menu">
-              <button data-filter="*" class="active">All</button>
-              <button data-filter=".design">Web Design</button>
-              <button data-filter=".dev">Development</button>
-              <button data-filter=".photography">Photography</button>
+              <button data-filter="*" class="active">Semua</button>
+              <button 
+                v-for="kategori in categories" 
+                :key="kategori.id"
+                :data-filter="`.${kategori.css_class}`"
+              >
+                {{ kategori.name }}
+              </button>
             </div>
             <!-- /portfolio-menu -->
           </div>
@@ -29,16 +33,45 @@
         </div>
         <!-- /row -->
 
-        <ClientOnly>
-          <div class="row portfolio grid">
+        <!-- Loading State -->
+        <div v-if="loading" class="row">
+          <div class="col-12 text-center">
+            <div class="loading-spinner py-5">
+              <i class="fas fa-spinner fa-spin fa-2x theme-color"></i>
+              <p class="mt-3">Memuat galeri...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error State -->
+        <div v-else-if="error" class="row">
+          <div class="col-12 text-center">
+            <div class="error-message py-5">
+              <i class="fas fa-exclamation-triangle fa-2x text-warning"></i>
+              <p class="mt-3 text-danger">{{ error }}</p>
+              <button class="btn btn-primary mt-3" @click="loadGaleriData()">
+                Coba Lagi
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Galeri Content -->
+        <ClientOnly v-else>
+          <div v-if="items.length > 0" class="row portfolio grid">
             <div
               v-for="(item, index) in items"
-              :key="index"
+              :key="item.id || index"
               class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 grid-item"
               :class="item.categoryCls"
             >
               <div class="single-portfolio position-relative over-hidden mb-24">
-                <img class="img-grayscale w-100" :src="item.img" alt="" />
+                <img 
+                  class="img-grayscale w-100" 
+                  :src="item.img" 
+                  :alt="item.title || 'Galeri Image'"
+                  @error="handleImageError($event, item)"
+                />
                 <div
                   class="port-content text-center position-absolute transition5 z-index11"
                   @click="activeItem(item)"
@@ -62,33 +95,23 @@
               <!-- /single-prot -->
             </div>
           </div>
+          
+          <!-- Empty State -->
+          <div v-else class="row">
+            <div class="col-12 text-center">
+              <div class="empty-state py-5">
+                <i class="fas fa-images fa-3x text-muted"></i>
+                <p class="mt-3 text-muted">Belum ada data galeri tersedia</p>
+              </div>
+            </div>
+          </div>
+          
           <template #fallback>
             <div class="row">
-              <div
-                v-for="(item, index) in items"
-                :key="index"
-                class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12"
-              >
-                <div class="single-portfolio position-relative over-hidden mb-24">
-                  <img class="img-grayscale w-100" :src="item.img" alt="" />
-                  <div
-                    class="port-content text-center position-absolute transition5 z-index11"
-                    @click="activeItem(item)"
-                  >
-                    <span class="theme-color d-inline-block"
-                      ><i class="far fa-external-link-alt"></i>
-                    </span>
-                  </div>
-                  <div
-                    class="port-over-content position-absolute left-0 pl-40 pr-40 pb-30 pt-40 z-index11"
-                  >
-                    <span class="text-white f-600 mb-2 d-block text-uppercase">{{
-                      item.category
-                    }}</span>
-                    <h3 class="text-white">
-                      {{ item.title }}
-                    </h3>
-                  </div>
+              <div class="col-12 text-center">
+                <div class="loading-spinner py-5">
+                  <i class="fas fa-spinner fa-spin fa-2x theme-color"></i>
+                  <p class="mt-3">Memuat galeri...</p>
                 </div>
               </div>
             </div>
@@ -100,7 +123,7 @@
     </div>
     <!-- /portfolio-wrapper -->
   </div>
-  <PortfolioModal
+  <GaleriModal
     v-if="toggle"
     :item="item"
     :toggle="toggle"
@@ -111,57 +134,197 @@
 
 <script>
 export default {
-  mounted() {
-    if (process.client) {
-      setTimeout(() => {
-        // Wait for Isotope to be loaded
-        const waitForIsotope = () => {
-          if (window.Isotope) {
-            // init Isotope
-            var iso = new window.Isotope(".grid", {
-              itemSelector: ".grid-item",
-            });
-            // bind filter button click
-            var filtersElem = document.querySelector(".portfolio-menu");
-            if (filtersElem) {
-              filtersElem.addEventListener("click", function (event) {
-                // console.log(event.target.closest(".portfolio-menu button"));
-                if (event.target.value !== undefined) {
-                  var filterValue = event.target.getAttribute("data-filter");
-                  iso.arrange({ filter: `${filterValue}` });
-                }
-              });
-
-              // change is-checked class on buttons
-              var buttonGroups = document.querySelectorAll(".portfolio-menu");
-              for (var i = 0, len = buttonGroups.length; i < len; i++) {
-                var buttonGroup = buttonGroups[i];
-                radioButtonGroup(buttonGroup);
-              }
-
-              function radioButtonGroup(buttonGroup) {
-                buttonGroup.addEventListener("click", function (event) {
-                  if (!event.target.classList.contains("portfolio-menu")) {
-                    buttonGroup.querySelector(".active").classList.remove("active");
-                    event.target
-                      .closest(".portfolio-menu button")
-                      .classList.add("active");
-                  }
-                });
-              }
-            }
-          } else {
-            // Retry after 100ms if Isotope is not yet loaded
-            setTimeout(waitForIsotope, 100);
-          }
-        };
-        waitForIsotope();
-      }, 1500);
+  async mounted() {
+    // Load data kategori dan galeri dari API
+    await Promise.all([
+      this.loadKategoriData(),
+      this.loadGaleriData()
+    ]);
+    
+    // Initialize Isotope setelah data dimuat
+    this.initializeIsotope();
+  },
+  beforeUnmount() {
+    // Cleanup Isotope instance
+    if (this.isotopeInstance) {
+      this.isotopeInstance.destroy();
+      this.isotopeInstance = null;
+    }
+    
+    // Cleanup event listeners untuk menghindari konflik
+    const filtersElem = document.querySelector(".portfolio-menu");
+    if (filtersElem) {
+      // Clone element untuk remove semua event listeners
+      const newElement = filtersElem.cloneNode(true);
+      filtersElem.parentNode.replaceChild(newElement, filtersElem);
     }
   },
   data() {
     return {
-      items: [
+      items: [],
+      categories: [],
+      loading: false,
+      error: null,
+      toggle: false,
+      item: null,
+      isotopeInstance: null,
+    };
+  },
+  methods: {
+    initializeIsotope() {
+      if (process.client) {
+        this.$nextTick(() => {
+          setTimeout(() => {
+            // Wait for Isotope to be loaded
+            const waitForIsotope = () => {
+              if (window.Isotope) {
+                // init Isotope
+                this.isotopeInstance = new window.Isotope(".grid", {
+                  itemSelector: ".grid-item",
+                });
+                
+                // bind filter button click
+                var filtersElem = document.querySelector(".portfolio-menu");
+                if (filtersElem) {
+                  const self = this;
+                  filtersElem.addEventListener("click", function (event) {
+                    // Check if target is a button
+                    if (event.target.tagName === 'BUTTON' && event.target.hasAttribute('data-filter')) {
+                      var filterValue = event.target.getAttribute("data-filter");
+                      self.isotopeInstance.arrange({ filter: filterValue });
+                    }
+                  });
+
+                  // change is-checked class on buttons
+                  var buttonGroups = document.querySelectorAll(".portfolio-menu");
+                  for (var i = 0, len = buttonGroups.length; i < len; i++) {
+                    var buttonGroup = buttonGroups[i];
+                    self.radioButtonGroup(buttonGroup);
+                  }
+                }
+              } else {
+                // Retry after 100ms if Isotope is not yet loaded
+                setTimeout(waitForIsotope, 100);
+              }
+            };
+            waitForIsotope();
+          }, 1500);
+        });
+      }
+    },
+    
+    radioButtonGroup(buttonGroup) {
+      buttonGroup.addEventListener("click", function (event) {
+        if (event.target.tagName === 'BUTTON') {
+          // Remove active class from all buttons
+          var buttons = buttonGroup.querySelectorAll("button");
+          buttons.forEach(function(btn) {
+            btn.classList.remove("active");
+          });
+          // Add active class to clicked button
+          event.target.classList.add("active");
+        }
+      });
+    },
+    
+    async loadKategoriData() {
+      try {
+        const { $api } = useNuxtApp();
+        
+        // Fetch data kategori galeri dari API
+        const response = await $fetch($api.kategoriGaleri(), {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        if (response && Array.isArray(response)) {
+          this.categories = response;
+        } else {
+          console.warn('Data kategori galeri kosong atau format tidak valid');
+          this.categories = [];
+        }
+      } catch (error) {
+        console.error('Error loading kategori galeri data:', error);
+        // Fallback ke kategori default jika ada error
+        this.categories = this.getDefaultCategories();
+      }
+    },
+    
+    async loadGaleriData() {
+      this.loading = true;
+      this.error = null;
+      
+      try {
+        const { $api } = useNuxtApp();
+        
+        // Fetch data galeri dari API
+        const response = await $fetch($api.galeri(), {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        if (response && Array.isArray(response)) {
+          // Transform API data ke format yang dibutuhkan komponen
+          this.items = response.map(item => ({
+            id: item.id,
+            title: item.title || 'Untitled',
+            category: item.kategori_galeri?.name || 'Uncategorized',
+            img: item.image_url || this.getDefaultImage(),
+            largeImage: item.image_url || this.getDefaultImage(),
+            categoryCls: this.getCategoryClass(item.kategori_galeri?.name),
+            subtitle: item.subtitle,
+            description: item.description,
+            created_at: item.created_at,
+            // Pertahankan data kategori_galeri untuk modal
+            kategori_galeri: item.kategori_galeri
+          }));
+        } else {
+          console.warn('Data galeri kosong atau format tidak valid');
+          this.items = [];
+        }
+      } catch (error) {
+        console.error('Error loading galeri data:', error);
+        this.error = 'Gagal memuat data galeri';
+        // Fallback ke data default jika ada error
+        this.items = this.getDefaultItems();
+      } finally {
+        this.loading = false;
+      }
+    },
+    
+    getCategoryClass(categoryName) {
+      if (!categoryName) return 'design';
+      
+      const category = categoryName.toLowerCase();
+      if (category.includes('web') || category.includes('design')) {
+        return 'design';
+      } else if (category.includes('development') || category.includes('dev')) {
+        return 'dev';
+      } else if (category.includes('photography') || category.includes('photo')) {
+        return 'photography';
+      } else {
+        return 'design'; // default
+      }
+    },
+    
+    getDefaultImage() {
+      return '/images/index-4/portfolio/portfolio-img1.jpg';
+    },
+    
+    getDefaultCategories() {
+      return [
+        { id: 1, name: "Web Design", css_class: "design" },
+        { id: 2, name: "Development", css_class: "dev" },
+        { id: 3, name: "Photography", css_class: "photography" }
+      ];
+    },
+    
+    getDefaultItems() {
+      return [
         {
           id: 1,
           title: "Software Design for codeefly",
@@ -169,6 +332,7 @@ export default {
           img: "/images/index-4/portfolio/portfolio-img1.jpg",
           largeImage: "/images/index-4/portfolio/portfolio-modal-img1.jpg",
           categoryCls: "dev photography",
+          kategori_galeri: { id: 1, name: "Web Design" }
         },
         {
           id: 2,
@@ -177,6 +341,7 @@ export default {
           img: "/images/index-4/portfolio/portfolio-img2.jpg",
           largeImage: "/images/index-4/portfolio/portfolio-modal-img2.jpg",
           categoryCls: "dev design",
+          kategori_galeri: { id: 2, name: "Development" }
         },
         {
           id: 3,
@@ -185,45 +350,30 @@ export default {
           img: "/images/index-4/portfolio/portfolio-img3.jpg",
           largeImage: "/images/index-4/portfolio/portfolio-modal-img3.jpg",
           categoryCls: "photography",
-        },
-        {
-          id: 4,
-          title: "Security Analysis for codeefly",
-          category: "Photography",
-          img: "/images/index-4/portfolio/portfolio-img4.jpg",
-          largeImage: "/images/index-4/portfolio/portfolio-modal-img4.jpg",
-          categoryCls: "design photography",
-        },
-        {
-          id: 5,
-          title: "Security Analysis for codeefly",
-          category: "Photography",
-          img: "/images/index-4/portfolio/portfolio-img5.jpg",
-          largeImage: "/images/index-4/portfolio/portfolio-modal-img5.jpg",
-          categoryCls: "dev graphic",
-        },
-        {
-          id: 6,
-          title: "Security Analysis for codeefly",
-          category: "Photography",
-          img: "/images/index-4/portfolio/portfolio-img6.jpg",
-          largeImage: "/images/index-4/portfolio/portfolio-modal-img6.jpg",
-          categoryCls: "dev design photography",
-        },
-      ],
-      toggle: false,
-      item: null,
-    };
-  },
-  methods: {
+          kategori_galeri: { id: 3, name: "Photography" }
+        }
+      ];
+    },
+    
     activeItem(item) {
       this.toggle = true;
       this.item = item;
       document.querySelector("body").classList.add("modal-open");
+      
+      // Debug: Log item data for modal
+      console.log('Modal item data:', item);
+      console.log('Kategori galeri:', item.kategori_galeri);
     },
+    
     close() {
       this.toggle = false;
       document.querySelector("body").classList.remove("modal-open");
+    },
+    
+    handleImageError(event, item) {
+      // Fallback ke gambar default jika gambar tidak bisa dimuat
+      event.target.src = this.getDefaultImage();
+      console.warn('Failed to load image for item:', item.title);
     },
   },
 };

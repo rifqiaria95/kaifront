@@ -36,6 +36,7 @@
               <span class="per d-inline-block f-700 theme-color mt-1">+</span>
             </div>
             <h3 class="text-white f-700 text-uppercase mb-0">
+              Keterlibatan <br>
               Organisasi
             </h3>
           </div>
