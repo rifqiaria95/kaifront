@@ -38,6 +38,8 @@ export default defineNuxtPlugin(() => {
     kategoriGaleri: () => `${apiBase}/kategori-galeri`,
     // Education endpoint
     education: () => `${apiBase}/education`,
+    // Experience endpoint
+    experience: () => `${apiBase}/experience`,
     // Image helper dengan perbaikan untuk production dan hindari double slash
     getImageUrl: (imagePath: string | null | undefined) => {
       if (!imagePath) {

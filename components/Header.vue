@@ -33,6 +33,12 @@
                         <li>
                           <a href="#visimisi">Visi & Misi</a>
                         </li>
+                        <li>
+                          <a href="#pendidikan">Pendidikan</a>
+                        </li>
+                        <li>
+                          <a href="#pengalaman">Pengalaman</a>
+                        </li>
                       </ul>
                     </li>
                     <li class="menu-item-has-children">
@@ -64,6 +70,9 @@
                               <a href="https://baznas.go.id/">Badan Amil Zakat Nasional (BAZNAS)</a>
                             </li>
                             <li>
+                              <a href="https://haji.go.id/v5/">Badan Penyelenggara Haji (BPH)</a>
+                            </li>
+                            <li>
                               <a href="https://bwi.go.id/">Badan Wakaf Indonesia (BWI)</a>
                             </li>
                             <li>
@@ -77,10 +86,7 @@
                       </ul>
                     </li>
                     <li>
-                      <a href="#pengalaman">Pengalaman</a>
-                    </li>
-                    <li>
-                      <a href="#pendidikan">Pendidikan</a>
+                      <a href="#blog">Berita</a>
                     </li>
                     <li>
                       <a href="#galeri">Galeri</a>
@@ -174,6 +180,9 @@
                 <li>
                   <a href="#pendidikan">Pendidikan</a>
                 </li>
+                <li>
+                  <a href="#pengalaman">Pengalaman</a>
+                </li>
               </ul>
             </li>
             <li class="menu-item-has-children" :class="{ open: mobileProgramSubmenuOpen }">
@@ -208,6 +217,9 @@
                       <a href="https://bwi.go.id/">Badan Wakaf Indonesia (BWI)</a>
                     </li>
                     <li>
+                      <a href="https://haji.go.id/v5/">Badan Penyelenggara Haji (BPH)</a>
+                    </li>
+                    <li>
                       <a href="https://bpkh.go.id/">Badan Pengelola Keuangan Haji (BPKH)</a>
                     </li>
                   </ul>
@@ -216,12 +228,6 @@
                   <a href="#visimisi">Partai</a>
                 </li>
               </ul>
-            </li>
-            <li>
-              <a href="#pengalaman">Pengalaman</a>
-            </li>
-            <li>
-              <a href="#pendidikan">Pendidikan</a>
             </li>
             <li>
               <a href="#galeri">Galeri</a>
@@ -460,6 +466,7 @@ export default {
   color: #333;
   text-decoration: none;
   white-space: nowrap;
+  font-size: 16px;
 }
 
 .submenu li a:hover {

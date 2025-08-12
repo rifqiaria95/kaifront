@@ -3,7 +3,7 @@
     <div class="experience-wrapper extra-width position-relative">
       <div
         class="experience-bg-img left-0 top-0 bottom-0 bg-cover no-repeat w-50 position-absolute"
-        data-background="/images/work/work-img.jpg"
+        data-background="/images/work/experience.JPG"
       ></div>
       <div class="container">
         <div class="row">
@@ -21,19 +21,74 @@
               <div class="position-relative">
                 <div class="title">
                   <span class="theme-color text-uppercase d-block mb-6 mt--5"
-                    >Work Experience</span
+                    >Pengalaman</span
                   >
-                  <h2 class="mb-25">My Experience</h2>
+                  <h2 class="mb-25">Pengalaman Saya</h2>
                   <p>
-                    Sed ut perspiciatis unde omnis iste natus kobita tumi sopno
-                    charini hoye khbor nio na sit voluptatem.
+                    Berikut adalah pengalaman saya di dunia politik yang telah saya jalani selama bertahun-tahun.
                   </p>
                 </div>
                 <!-- /title -->
               </div>
-              <div class="experience-wrapper pt-25">
+              
+              <!-- Loading State -->
+              <div v-if="loading" class="experience-wrapper pt-25 text-center">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <p class="mt-3">Memuat data experience...</p>
+              </div>
+
+              <!-- Error State -->
+              <div v-else-if="error" class="experience-wrapper pt-25">
+                <div class="alert alert-danger" role="alert">
+                  <h4 class="alert-heading">Error!</h4>
+                  <p>{{ error }}</p>
+                  <div class="mt-3">
+                    <button class="btn btn-sm btn-outline-danger me-2" @click="experienceStore.fetchExperienceData()">
+                      Coba Lagi
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" @click="experienceStore.clearError()">
+                      Tutup Error
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Experience Content -->
+              <div v-else class="experience-wrapper pt-25">
                 <ul class="experience-content">
-                  <li class="mb-32 d-flex align-items-start rotate-hover">
+                  <li 
+                    v-for="experience in experienceData" 
+                    :key="experience.id"
+                    class="mb-32 d-flex align-items-start rotate-hover"
+                  >
+                    <div
+                      class="experience-ser-icon d-inline-block text-center mt-10 mr-30 transition3"
+                    >
+                      <span class="theme-color d-inline-block">
+                        <span
+                          class="d-block rotate flat-family flaticon-briefcase"
+                        ></span>
+                      </span>
+                    </div>
+                    <!-- /experience-ser-icon -->
+                    <div class="experience-service-text d-inline-block">
+                      <h3 class="mb-2">{{ cleanText(experience.title) }}</h3>
+                      <h4>
+                        {{ cleanText(experience.company) }}
+                        <span class="meta-text-color openS-font-family">
+                          ( {{ experience.year }} )</span
+                        >
+                      </h4>
+                      <p class="mb-0 mt-15">
+                        {{ cleanText(experience.description) }}
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <!-- Fallback content jika tidak ada data -->
+                  <li v-if="experienceData.length === 0" class="mb-32 d-flex align-items-start rotate-hover">
                     <div
                       class="experience-ser-icon d-inline-block text-center mt-10 mr-30 transition3"
                     >
@@ -59,58 +114,6 @@
                       </p>
                     </div>
                   </li>
-                  <li class="mb-32 d-flex align-items-start rotate-hover">
-                    <div
-                      class="experience-ser-icon d-inline-block text-center mt-10 mr-30 transition3"
-                    >
-                      <span class="theme-color d-inline-block">
-                        <span
-                          class="d-block rotate flat-family flaticon-briefcase"
-                        ></span>
-                      </span>
-                    </div>
-                    <!-- /experience-ser-icon -->
-                    <div class="experience-service-text d-inline-block">
-                      <h3 class="mb-2">Data Architect</h3>
-                      <h4>
-                        Easy Computers
-                        <span class="meta-text-color openS-font-family"
-                          >( 2015 - 2018 )</span
-                        >
-                      </h4>
-                      <p class="mb-0 mt-15">
-                        Ludantium totam rem aperia meaque ipsa quae ab illo
-                        inven tore veritatis et quasi architecto beatae et vitae
-                        ullam molesti quae quasi.
-                      </p>
-                    </div>
-                  </li>
-                  <li class="mb-32 d-flex align-items-start rotate-hover">
-                    <div
-                      class="experience-ser-icon d-inline-block text-center mt-10 mr-30 transition3"
-                    >
-                      <span class="theme-color d-inline-block">
-                        <span
-                          class="d-block rotate flat-family flaticon-briefcase"
-                        ></span>
-                      </span>
-                    </div>
-                    <!-- /experience-ser-icon -->
-                    <div class="experience-service-text d-inline-block">
-                      <h3 class="mb-2">Web Developer</h3>
-                      <h4>
-                        Bangla College
-                        <span class="meta-text-color openS-font-family"
-                          >( 2012 - 2015 )</span
-                        >
-                      </h4>
-                      <p class="mb-0 mt-15">
-                        Ludantium totam rem aperia meaque ipsa quae ab illo
-                        inven tore veritatis et quasi architecto beatae et vitae
-                        ullam molesti quae quasi.
-                      </p>
-                    </div>
-                  </li>
                 </ul>
               </div>
               <!-- /experience-wrapper -->
@@ -126,3 +129,23 @@
     <!-- /experience-wrapper -->
   </div>
 </template>
+
+<script setup>
+  import { useExperienceStore } from '~/stores/experience'
+  import { cleanText } from '~/utils/stripHtml'
+
+  // Store
+  const experienceStore = useExperienceStore()
+
+  // Computed
+  const experienceData = computed(() => experienceStore.getExperienceData)
+  const loading = computed(() => experienceStore.isLoading)
+  const error = computed(() => experienceStore.hasError)
+
+  // Fetch data saat komponen di-mount
+  onMounted(async () => {
+    if (experienceData.value.length === 0) {
+      await experienceStore.fetchExperienceData()
+    }
+  })
+</script>

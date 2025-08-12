@@ -115,6 +115,7 @@ declare global {
   const useCssVars: typeof import('vue')['useCssVars']
   const useEducationStore: typeof import('../../stores/education')['useEducationStore']
   const useError: typeof import('../../node_modules/nuxt/dist/app/composables/error')['useError']
+  const useExperienceStore: typeof import('../../stores/experience')['useExperienceStore']
   const useFetch: typeof import('../../node_modules/nuxt/dist/app/composables/fetch')['useFetch']
   const useGaleriStore: typeof import('../../stores/galeri')['useGaleriStore']
   const useHead: typeof import('../../node_modules/nuxt/dist/app/composables/head')['useHead']
@@ -319,6 +320,7 @@ declare module 'vue' {
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useEducationStore: UnwrapRef<typeof import('../../stores/education')['useEducationStore']>
     readonly useError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/error')['useError']>
+    readonly useExperienceStore: UnwrapRef<typeof import('../../stores/experience')['useExperienceStore']>
     readonly useFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/fetch')['useFetch']>
     readonly useGaleriStore: UnwrapRef<typeof import('../../stores/galeri')['useGaleriStore']>
     readonly useHead: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/head')['useHead']>

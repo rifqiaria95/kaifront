@@ -7,22 +7,48 @@
           <div class="position-relative">
             <div class="title">
               <span class="theme-color text-uppercase d-block mb-1"
-                >Education</span
+                >Pendidikan</span
               >
-              <h2 class="mb-25">{{ educationData?.title ? cleanText(educationData.title) : 'My Education' }}</h2>
+              <h2 class="mb-25">Pendidikan Saya</h2>
               <p>
-                {{ educationData?.subtitle ? cleanText(educationData.subtitle) : 'Sed ut perspiciatis unde omnis iste natus kobita tumi sopno charini hoye khbor nio na sit voluptatem accusantium dolore.' }}
+                Berikut adalah pendidikan saya yang telah saya tempuh selama ini.
               </p>
             </div>
             <!-- /title -->
           </div>
-          <!-- Education wrapper -->
-          <div class="education-wrapper mr-20 pt-25 mb-50">
+          
+          <!-- Loading State -->
+          <div v-if="loading" class="education-wrapper mr-20 pt-25 mb-50 text-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <p class="mt-3">Memuat data education...</p>
+          </div>
+
+          <!-- Error State -->
+          <div v-else-if="error" class="education-wrapper mr-20 pt-25 mb-50">
+            <div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">Error!</h4>
+              <p>{{ error }}</p>
+              <div class="mt-3">
+                <button class="btn btn-sm btn-outline-danger me-2" @click="educationStore.fetchEducationData()">
+                  Coba Lagi
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" @click="educationStore.clearError()">
+                  Tutup Error
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education Content -->
+          <div v-else class="education-wrapper mr-20 pt-25 mb-50">
+            
             <!-- Education content -->
             <ul class="education-content">
               <li
-                v-for="(item, idx) in educationData && Array.isArray(educationData) ? educationData : (educationData ? [educationData] : [])"
-                :key="item.id || idx"
+                v-for="education in educationData"
+                :key="education.id"
                 class="mb-32 d-flex align-items-start rotate-hover"
               >
                 <div
@@ -36,12 +62,41 @@
                 </div>
                 <!-- /education-ser-icon -->
                 <div class="experience-service-text d-inline-block">
-                  <h3 class="mb-2">{{ item?.institution ? cleanText(item.institution) : 'Masters in Computer Science' }}</h3>
+                  <h3 class="mb-2">{{ cleanText(education.title) }}</h3>
                   <h4>
-                    {{ item?.year ? cleanText(item.year) : 'New York University' }}
+                    {{ cleanText(education.institution) }}
+                    <span class="meta-text-color openS-font-family">
+                      ( {{ education.year }} )</span
+                    >
                   </h4>
                   <p class="mb-0 mt-15">
-                    {{ item?.description ? cleanText(item.description) : 'Ludantium totam rem aperia meaque ipsa quae ab illo inven tore veritatis et quasi architecto beatae vitae.' }}
+                    {{ cleanText(education.description) }}
+                  </p>
+                </div>
+              </li>
+              
+              <!-- Fallback content jika tidak ada data -->
+              <li v-if="educationData.length === 0" class="mb-32 d-flex align-items-start rotate-hover">
+                <div
+                  class="experience-ser-icon d-inline-block text-center mt-10 mr-30 transition3"
+                >
+                  <span class="theme-color d-inline-block">
+                    <span
+                      class="d-block rotate flat-family flaticon-graduation-cap"
+                    ></span>
+                  </span>
+                </div>
+                <!-- /education-ser-icon -->
+                <div class="experience-service-text d-inline-block">
+                  <h3 class="mb-2">Sekolah Dasar</h3>
+                  <h4>
+                    SD Negeri
+                    <span class="meta-text-color openS-font-family">
+                      ( 1985 - 1991 )</span
+                    >
+                  </h4>
+                  <p class="mb-0 mt-15">
+                    Ludantium totam rem aperia meaque ipsa quae ab illo inven tore veritatis et quasi architecto beatae vitae.
                   </p>
                 </div>
               </li>
@@ -63,7 +118,7 @@
               class="border-radius10"
               :class="`${imgGrayScale ? 'img-grayscale' : ''}`"
               :src="imageUrl"
-              :alt="educationData?.title ? cleanText(educationData.title) : 'Education Image'"
+              :alt="educationData.length > 0 ? cleanText(educationData[0].title) : 'Education Image'"
               @error="handleImageError"
               @load="handleImageLoad"
             />
@@ -89,7 +144,7 @@ defineProps({
   },
   image: {
     type: String,
-    default: "/images/education/education-img.jpg",
+    default: "/images/education/education.jpg",
   },
 })
 
@@ -100,13 +155,21 @@ const educationStore = useEducationStore()
 const imageError = ref(false)
 
 // Computed
-const educationData = computed(() => educationStore.getEducationData)
+const educationData = computed(() => {
+  const data = educationStore.getEducationData
+  console.log('Education component - educationData computed:', data)
+  return data
+})
 const loading = computed(() => educationStore.isLoading)
 const error = computed(() => educationStore.hasError)
 
 // Computed untuk image URL
 const imageUrl = computed(() => {
-  return getImageUrl(educationData.value?.image)
+  // Use first education item's image if available, otherwise use default
+  if (educationData.value.length > 0 && educationData.value[0].image) {
+    return getImageUrl(educationData.value[0].image)
+  }
+  return '/images/education/education.jpg'
 })
 
 // Functions
@@ -115,7 +178,7 @@ const { $api } = useNuxtApp()
 const getImageUrl = (imagePath) => {
   // Jika imagePath undefined atau null, langsung return default
   if (!imagePath) {
-    return '/images/about/about-img.jpg'
+    return '/images/education/education.jpg'
   }
   
   // Pastikan $api tersedia (untuk SSR)
@@ -142,8 +205,8 @@ const handleImageError = (event) => {
   
   // Coba fallback ke default image jika bukan default image yang gagal
   const img = event.target
-  if (!img.src.includes('about-img.jpg')) {
-    img.src = '/images/about/about-img.jpg'
+  if (!img.src.includes('education.jpg')) {
+    img.src = '/images/education/education.jpg'
   }
 }
 
@@ -153,8 +216,13 @@ const handleImageLoad = (event) => {
 
 // Fetch data saat komponen di-mount
 onMounted(async () => {
-  if (!educationData.value) {
+  console.log('Education component mounted')
+  console.log('Current education data length:', educationData.value.length)
+  if (educationData.value.length === 0) {
+    console.log('Fetching education data...')
     await educationStore.fetchEducationData()
+  } else {
+    console.log('Education data already exists')
   }
 })
 </script>

@@ -38,6 +38,7 @@ export { useAboutStore } from '../stores/about';
 export { useAuthStore } from '../stores/auth';
 export { useChatbotStore, Chatbot, ChatMessage } from '../stores/chatbot';
 export { useEducationStore } from '../stores/education';
+export { useExperienceStore } from '../stores/experience';
 export { useGaleriStore } from '../stores/galeri';
 export { useNewsStore } from '../stores/news';
 export { useProgramStore } from '../stores/program';

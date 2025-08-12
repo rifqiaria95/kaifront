@@ -66,13 +66,16 @@
               :class="item.categoryCls"
             >
               <div class="single-portfolio position-relative over-hidden mb-24">
-                <img 
-                  class="img-grayscale w-100" 
-                  :src="item.img" 
-                  :alt="item.title || 'Galeri Image'"
-                  @error="handleImageError($event, item)"
-                  @load="handleImageLoad($event, item)"
-                />
+                <div class="galeri-image-wrapper" :class="{ loading: item.loading }">
+                  <img 
+                    class="galeri-image" 
+                    :src="item.img" 
+                    :alt="item.title || 'Galeri Image'"
+                    @error="handleImageError($event, item)"
+                    @load="handleImageLoad($event, item)"
+                    @loadstart="handleImageLoadStart($event, item)"
+                  />
+                </div>
                 <div
                   class="port-content text-center position-absolute transition5 z-index11"
                   @click="activeItem(item)"
@@ -288,7 +291,9 @@ export default {
               kategori_galeri: item.kategori_galeri,
               // Debug info
               original_image: item.image,
-              api_image_url: item.image_url
+              api_image_url: item.image_url,
+              // Loading state
+              loading: true
             };
           });
         } else {
@@ -341,7 +346,8 @@ export default {
           img: "/images/index-4/portfolio/portfolio-img1.jpg",
           largeImage: "/images/index-4/portfolio/portfolio-modal-img1.jpg",
           categoryCls: "dev photography",
-          kategori_galeri: { id: 1, name: "Web Design" }
+          kategori_galeri: { id: 1, name: "Web Design" },
+          loading: true
         },
         {
           id: 2,
@@ -350,7 +356,8 @@ export default {
           img: "/images/index-4/portfolio/portfolio-img2.jpg",
           largeImage: "/images/index-4/portfolio/portfolio-modal-img2.jpg",
           categoryCls: "dev design",
-          kategori_galeri: { id: 2, name: "Development" }
+          kategori_galeri: { id: 2, name: "Development" },
+          loading: true
         },
         {
           id: 3,
@@ -359,7 +366,8 @@ export default {
           img: "/images/index-4/portfolio/portfolio-img3.jpg",
           largeImage: "/images/index-4/portfolio/portfolio-modal-img3.jpg",
           categoryCls: "photography",
-          kategori_galeri: { id: 3, name: "Photography" }
+          kategori_galeri: { id: 3, name: "Photography" },
+          loading: true
         }
       ];
     },
@@ -389,6 +397,9 @@ export default {
       const img = event.target;
       const defaultImage = this.getDefaultImage();
       
+      // Set loading to false
+      item.loading = false;
+      
       // Jika gambar yang gagal bukan default image
       if (!img.src.includes('portfolio-img1.jpg')) {
         img.src = defaultImage;
@@ -400,8 +411,93 @@ export default {
     
     handleImageLoad(event, item) {
       // Image loaded successfully
+      item.loading = false;
       // console.log('Image loaded successfully for item:', item.title);
+    },
+    
+    handleImageLoadStart(event, item) {
+      // Image started loading
+      item.loading = true;
     },
   },
 };
 </script>
+
+<style scoped>
+/* Galeri Image Styling - Fixed size with proportional scaling */
+.galeri-image-wrapper {
+  width: 426px;
+  height: 234px;
+  overflow: hidden;
+  position: relative;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+.galeri-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+/* Hover effect */
+.single-portfolio:hover .galeri-image {
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .galeri-image-wrapper {
+    border-radius: 10px;
+    width: 100%;
+    height: 200px;
+    max-width: 426px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .galeri-image-wrapper {
+    height: 180px;
+  }
+}
+
+/* Grayscale effect yang sudah ada */
+.galeri-image {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.single-portfolio:hover .galeri-image {
+  filter: grayscale(0%);
+}
+
+/* Loading placeholder */
+.galeri-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.galeri-image-wrapper.loading::before {
+  opacity: 1;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+</style>
