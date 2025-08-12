@@ -125,7 +125,7 @@
             ></a>
           </li>
           <li class="mt-10 mb-10 rotate-hover">
-            <a class="text-white text-center d-inline-block rotate" href="#"
+            <a class="text-white text-center d-inline-block rotate" href="https://www.youtube.com/@sagchannel1320" target="_blank"
               ><i class="fab fa-youtube"></i
             ></a>
           </li>

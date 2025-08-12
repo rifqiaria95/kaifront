@@ -193,6 +193,21 @@
           </div>
           <!-- /col -->
         </div>
+       <!-- /row -->
+        <div class="row">
+          <div
+            class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-bottom"
+            data-aos-duration="2000"
+            data-aos-delay="500"
+          >
+            <div class="map-wrapper mt-70" id="mapwrapper">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d247.6554452880122!2d108.5221432!3d-6.7102487!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee1d93cffb6cf%3A0x849c41d6bcdad97b!2sSelly%20Andriany%20Gantina%20DPR%20RI%20No.%203%20PDI%20Perjuangan!5e0!3m2!1sid!2sid!4v1755012112861!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+          <!-- /col -->
+        </div>
         <!-- /row -->
       </div>
       <!-- /container -->

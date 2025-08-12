@@ -41,6 +41,7 @@ export { useEducationStore } from '../stores/education';
 export { useExperienceStore } from '../stores/experience';
 export { useGaleriStore } from '../stores/galeri';
 export { useNewsStore } from '../stores/news';
+export { useOrganisasiStore } from '../stores/organisasi';
 export { useProgramStore } from '../stores/program';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
 export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';

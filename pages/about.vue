@@ -1,14 +1,14 @@
 <template>
   <Preloader />
-  <div class="about-page">
-    <!-- Header -->
-    <Header 
-      :logo="'/images/index-4/logo.png'"
-      :logo2="'/images/index-4/black-logo.png'"
-      :downloadBtn="true"
-    />
-    <Chatbot />
-    <ScrollTop />
+  <NuxtLayout
+    :name="'thames'"
+    :logo="'/images/index-4/logo.png'"
+    :logo2="'/images/index-4/black-logo.png'"
+    :footerLogo="'/images/index-4/black-logo.png'"
+  >
+    <div class="about-page">
+      <Chatbot />
+      <ScrollTop />
     <!-- Hero Image Section -->
     <section class="hero-section">
       <div class="hero-background">
@@ -129,28 +129,24 @@
         </div>
       </div>
     </main>
-
-    <!-- Footer -->
-    <Footer 
-      :footerLogo="'/images/index-4/black-logo.png'"
-      copyRightTextColor="primary-color"
-    />
-  </div>
+    </div>
+  </NuxtLayout>
 </template>
 
 <script setup>
 import { useAboutStore } from '~/stores/about'
-
-// Import components
-import Header from '~/components/Header.vue'
-import Footer from '~/components/Footer.vue'
 
 // Setup head
 useHead({
   title: 'About Us',
   meta: [
     { name: 'description', content: 'About page description' }
-  ]
+  ],
+  link: [
+    { rel: "stylesheet", href: "css/index-4/default.css" },
+    { rel: "stylesheet", href: "css/index-4/style.css" },
+    { rel: "stylesheet", href: "css/index-4/responsive.css" },
+  ],
 })
 
 // Setup page meta
@@ -165,6 +161,19 @@ const aboutStore = useAboutStore()
 onMounted(async () => {
   await aboutStore.fetchAboutData()
   document.querySelector("body").classList.add("body-dark-mode")
+  
+  // Tambahkan manual sticky nav sebagai backup
+  const sticky = document.getElementById("header-sticky")
+  if (sticky) {
+    window.addEventListener("scroll", function () {
+      const scroll = window.scrollY
+      if (scroll < 2) {
+        sticky.classList.remove("sticky-menu")
+      } else {
+        sticky.classList.add("sticky-menu")
+      }
+    })
+  }
 })
 
 // Computed properties untuk data dari API
@@ -557,8 +566,196 @@ const handleImageLoad = () => {
   padding-right: 15px;
 }
 
+/* Ensure navbar works correctly */
+#header-sticky {
+  position: relative;
+  z-index: 999;
+}
+
+#header-sticky.sticky-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: #ffffff;
+  box-shadow: 0 8px 4px -7px rgba(115, 115, 115, 0.3);
+}
+
+/* Clean up any unwanted elements in header */
+#header-sticky * {
+  outline: none !important;
+}
+
+/* Style the login button properly */
+#header-sticky .header-btn a {
+  font-family: "Cormorant Garamond", serif;
+  padding: 13px 28px;
+  border: 1px solid #c75142;
+  border-radius: 5px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  background: transparent;
+  display: inline-block;
+  min-width: 100px;
+  text-align: center;
+}
+
+#header-sticky .header-btn a:hover {
+  background: #c75142;
+  color: #ffffff;
+}
+
+#header-sticky.sticky-menu .header-btn a {
+  color: #2e2e37;
+  padding: 8px 20px;
+  border: 1px solid #c75142;
+}
+
+#header-sticky.sticky-menu .header-btn a:hover {
+  background: #c75142;
+  color: #ffffff;
+}
+
+/* Ensure proper header layout */
+#header-sticky .header {
+  background: transparent;
+}
+
+#header-sticky.sticky-menu .header {
+  background: #ffffff;
+}
+
+/* Style menu items properly */
+#header-sticky .main-menu ul li > a {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 53px 0;
+  position: relative;
+  font-family: "Cormorant Garamond", serif;
+  text-decoration: none;
+}
+
+#header-sticky .main-menu ul li:hover > a,
+#header-sticky .main-menu ul li.active a {
+  color: #c75142;
+}
+
+#header-sticky.sticky-menu .main-menu ul li > a {
+  color: #2e2e37;
+  padding: 24px 0;
+}
+
+#header-sticky.sticky-menu .main-menu ul li:hover > a,
+#header-sticky.sticky-menu .main-menu ul li.active a {
+  color: #c75142;
+}
+
+/* Style logo properly */
+#header-sticky .logo {
+  margin: 0;
+}
+
+#header-sticky .logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+#header-sticky .header-logo {
+  display: block;
+}
+
+#header-sticky .header-sticky-logo {
+  display: none;
+}
+
+#header-sticky.sticky-menu .header-logo {
+  display: none;
+}
+
+#header-sticky.sticky-menu .header-sticky-logo {
+  display: block;
+}
+
+/* Style mobile menu properly */
+#header-sticky .mobile-m-bar {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  #header-sticky .main-menu {
+    display: none;
+  }
+  
+  #header-sticky .mobile-m-bar {
+    display: block;
+  }
+  
+  #header-sticky .mobile-m-bar a {
+    color: #c75142;
+    font-size: 24px;
+    text-decoration: none;
+  }
+  
+  /* Fix mobile login button */
+  #header-sticky .header-btn {
+    margin-right: 15px;
+  }
+  
+  #header-sticky .header-btn a {
+    display: inline-block !important;
+    padding: 8px 16px !important;
+    border: 1px solid #c75142 !important;
+    border-radius: 4px !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    font-size: 14px !important;
+    background: transparent !important;
+    transition: all 0.3s ease !important;
+    min-width: 80px !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+  }
+  
+  #header-sticky .header-btn a:hover {
+    background: #c75142;
+    color: #ffffff;
+  }
+  
+  #header-sticky.sticky-menu .header-btn a {
+    color: #2e2e37 !important;
+  }
+  
+  #header-sticky.sticky-menu .header-btn a:hover {
+    background: #c75142 !important;
+    color: #ffffff !important;
+  }
+}
+
+/* Additional mobile fixes */
+@media (max-width: 767px) {
+  #header-sticky .header-btn a {
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+    min-width: 70px !important;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hero-section {
+    margin-top: 10px;
+    height: 35vh;
+  }
   .hero-background {
     margin-top: 0;
     background-position: center center;
@@ -619,8 +816,10 @@ const handleImageLoad = () => {
   
   .image-container,
   .image-placeholder {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 350px;
+    margin-top: -90px;
+    margin-bottom: 20px;
   }
   
   .hero-text {
@@ -628,7 +827,7 @@ const handleImageLoad = () => {
   }
   
   .hero-section {
-    margin-top: 50px;
+    margin-top: -10px;
     height: 35vh;
   }
   
