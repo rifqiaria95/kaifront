@@ -1,5 +1,5 @@
 <template>
-  <div class="brand-area brand-height over-hidden">
+  <div class="brand-area brand-height over-hidden mt-30">
     <div class="container">
       <div class="row mt-5">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -12,7 +12,7 @@
           <!-- /title -->
           <client-only>
             <Swiper
-              :autoplay="{ delay: 1000, disableOnInteraction: true }"
+              :autoplay="{ delay: 1000, disableOnInteraction: false }"
               :navigation="false"
               :pagination="{ clickable: true }"
               :breakpoints="{
@@ -25,15 +25,27 @@
                   spaceBetween: 30,
                 },
                 767: {
-                  slidesPerView: 2,
-                  spaceBetween: 30,
+                  slidesPerView: 2.5,
+                  spaceBetween: 20,
+                  centeredSlides: true,
                 },
                 480: {
-                  slidesPerView: 1,
-                  spaceBetween: 30,
+                  slidesPerView: 1.8,
+                  spaceBetween: 15,
+                  centeredSlides: true,
+                },
+                0: {
+                  slidesPerView: 1.5,
+                  spaceBetween: 10,
+                  centeredSlides: true,
                 },
               }"
               :loop="true"
+              :loopedSlides="8"
+              :centeredSlides="true"
+              :grabCursor="true"
+              :watchSlidesProgress="true"
+              :slideToClickedSlide="true"
               class="brand-active mt-70 mb-90"
             >
               <SwiperSlide class="d-inline-block position-relative over-hidden">
@@ -43,18 +55,8 @@
                 >
                   <img
                     class="img"
-                    src="/images/brand/brand-img1.png"
-                    alt="brand logo 1"
-                  />
-                </a>
-                <a
-                  class="single-brand single-brand-hover pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-hover-img1.png"
-                    alt="brand logo 1"
+                    src="/images/brand/pdip.png"
+                    alt="PDI Perjuangan"
                   />
                 </a>
               </SwiperSlide>
@@ -65,18 +67,8 @@
                 >
                   <img
                     class="img"
-                    src="/images/brand/brand-img2.png"
-                    alt="brand logo 2"
-                  />
-                </a>
-                <a
-                  class="single-brand single-brand-hover pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-hover-img2.png"
-                    alt="brand logo 2"
+                    src="/images/brand/bph.png"
+                    alt="Badan Penyelenggara Haji"
                   />
                 </a>
               </SwiperSlide>
@@ -87,18 +79,8 @@
                 >
                   <img
                     class="img"
-                    src="/images/brand/brand-img3.png"
-                    alt="brand logo 3"
-                  />
-                </a>
-                <a
-                  class="single-brand single-brand-hover pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-hover-img3.png"
-                    alt="brand logo 3"
+                    src="/images/brand/bnpb.png"
+                    alt="Badan Nasional Penanggulangan Bencana"
                   />
                 </a>
               </SwiperSlide>
@@ -109,18 +91,8 @@
                 >
                   <img
                     class="img"
-                    src="/images/brand/brand-img4.png"
-                    alt="brand logo 4"
-                  />
-                </a>
-                <a
-                  class="single-brand single-brand-hover pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-hover-img4.png"
-                    alt="brand logo 4"
+                    src="/images/brand/kemensos.png"
+                    alt="Kementerian Sosial"
                   />
                 </a>
               </SwiperSlide>
@@ -131,18 +103,8 @@
                 >
                   <img
                     class="img"
-                    src="/images/brand/brand-img5.png"
-                    alt="brand logo 5"
-                  />
-                </a>
-                <a
-                  class="single-brand single-brand-hover pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-hover-img5.png"
-                    alt="brand logo 5"
+                    src="/images/brand/kp-ai.png"
+                    alt="Komisi Perlindungan Anak"
                   />
                 </a>
               </SwiperSlide>
@@ -153,18 +115,8 @@
                 >
                   <img
                     class="img"
-                    src="/images/brand/brand-img1.png"
-                    alt="brand logo 1"
-                  />
-                </a>
-                <a
-                  class="single-brand single-brand-hover pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-hover-img1.png"
-                    alt="brand logo 1"
+                    src="/images/brand/baz-nas.png"
+                    alt="Badan Amil Zakat Nasional"
                   />
                 </a>
               </SwiperSlide>
@@ -175,18 +127,8 @@
                 >
                   <img
                     class="img"
-                    src="/images/brand/brand-img2.png"
-                    alt="brand logo 2"
-                  />
-                </a>
-                <a
-                  class="single-brand single-brand-hover pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-hover-img2.png"
-                    alt="brand logo 2"
+                    src="/images/brand/kppda.png"
+                    alt="Kementrian Pemberdayaan Perempuan dan Perlindungan Anak"
                   />
                 </a>
               </SwiperSlide>
@@ -197,62 +139,8 @@
                 >
                   <img
                     class="img"
-                    src="/images/brand/brand-img3.png"
-                    alt="brand logo 3"
-                  />
-                </a>
-                <a
-                  class="single-brand single-brand-hover pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-hover-img3.png"
-                    alt="brand logo 3"
-                  />
-                </a>
-              </SwiperSlide>
-              <SwiperSlide class="d-inline-block position-relative over-hidden">
-                <a
-                  class="single-brand single-brand-out pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-img4.png"
-                    alt="brand logo 4"
-                  />
-                </a>
-                <a
-                  class="single-brand single-brand-hover pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-hover-img4.png"
-                    alt="brand logo 4"
-                  />
-                </a>
-              </SwiperSlide>
-              <SwiperSlide class="d-inline-block position-relative over-hidden">
-                <a
-                  class="single-brand single-brand-out pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-img5.png"
-                    alt="brand logo 5"
-                  />
-                </a>
-                <a
-                  class="single-brand single-brand-hover pt-20 d-block text-center transition3"
-                  href="index.html"
-                >
-                  <img
-                    class="img"
-                    src="/images/brand/brand-hover-img5.png"
-                    alt="brand logo 5"
+                    src="/images/brand/kementrian-agama.png"
+                    alt="Kementrian Agama"
                   />
                 </a>
               </SwiperSlide>

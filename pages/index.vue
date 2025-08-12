@@ -16,13 +16,12 @@
     <Experience />
     <Education :imgGrayScale="true" />
     <Program :bg="'secondary-bg'" />
-    <Service :bg="''" :titleColor="''" :items="serviceItems" :classic="true" />
+    <Brand />
     <Testimonials
       :classic="true"
       :testimonialIcon="'/images/index-4/testimonial-icon.png'"
       :imgGrayScale="true"
     />
-    <Brand />
     <Contact />
   </NuxtLayout>
 </template>
