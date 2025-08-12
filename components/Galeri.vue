@@ -71,6 +71,7 @@
                   :src="item.img" 
                   :alt="item.title || 'Galeri Image'"
                   @error="handleImageError($event, item)"
+                  @load="handleImageLoad($event, item)"
                 />
                 <div
                   class="port-content text-center position-absolute transition5 z-index11"
@@ -269,19 +270,27 @@ export default {
         
         if (response && Array.isArray(response)) {
           // Transform API data ke format yang dibutuhkan komponen
-          this.items = response.map(item => ({
-            id: item.id,
-            title: item.title || 'Untitled',
-            category: item.kategori_galeri?.name || 'Uncategorized',
-            img: item.image_url || this.getDefaultImage(),
-            largeImage: item.image_url || this.getDefaultImage(),
-            categoryCls: this.getCategoryClass(item.kategori_galeri?.name),
-            subtitle: item.subtitle,
-            description: item.description,
-            created_at: item.created_at,
-            // Pertahankan data kategori_galeri untuk modal
-            kategori_galeri: item.kategori_galeri
-          }));
+          this.items = response.map(item => {
+            // Prioritas: image_url dari API > fallback default
+            const imageUrl = item.image_url || this.getDefaultImage();
+            
+            return {
+              id: item.id,
+              title: item.title || 'Untitled',
+              category: item.kategori_galeri?.name || 'Uncategorized',
+              img: imageUrl,
+              largeImage: imageUrl,
+              categoryCls: this.getCategoryClass(item.kategori_galeri?.name),
+              subtitle: item.subtitle,
+              description: item.description,
+              created_at: item.created_at,
+              // Pertahankan data kategori_galeri untuk modal
+              kategori_galeri: item.kategori_galeri,
+              // Debug info
+              original_image: item.image,
+              api_image_url: item.image_url
+            };
+          });
         } else {
           console.warn('Data galeri kosong atau format tidak valid');
           this.items = [];
@@ -363,6 +372,11 @@ export default {
       // Debug: Log item data for modal
       console.log('Modal item data:', item);
       console.log('Kategori galeri:', item.kategori_galeri);
+      console.log('Image debug:', {
+        img: item.img,
+        original_image: item.original_image,
+        api_image_url: item.api_image_url
+      });
     },
     
     close() {
@@ -372,8 +386,21 @@ export default {
     
     handleImageError(event, item) {
       // Fallback ke gambar default jika gambar tidak bisa dimuat
-      event.target.src = this.getDefaultImage();
-      console.warn('Failed to load image for item:', item.title);
+      const img = event.target;
+      const defaultImage = this.getDefaultImage();
+      
+      // Jika gambar yang gagal bukan default image
+      if (!img.src.includes('portfolio-img1.jpg')) {
+        img.src = defaultImage;
+        console.warn('Failed to load image for item:', item.title, 'Fallback to default');
+      } else {
+        console.error('Default image also failed to load for item:', item.title);
+      }
+    },
+    
+    handleImageLoad(event, item) {
+      // Image loaded successfully
+      // console.log('Image loaded successfully for item:', item.title);
     },
   },
 };
