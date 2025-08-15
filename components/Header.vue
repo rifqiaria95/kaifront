@@ -230,6 +230,9 @@
               </ul>
             </li>
             <li>
+              <a href="#blog">Berita</a>
+            </li>
+            <li>
               <a href="#galeri">Galeri</a>
             </li>
             <li>

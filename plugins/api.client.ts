@@ -40,6 +40,8 @@ export default defineNuxtPlugin(() => {
     education: () => `${apiBase}/education`,
     // Organisasi endpoint
     organisasi: () => `${apiBase}/organisasi`,
+    // Testimoni endpoint
+    testimoni: () => `${apiBase}/testimoni`,
     // Experience endpoint
     experience: () => `${apiBase}/experience`,
     // Image helper dengan perbaikan untuk production dan hindari double slash
