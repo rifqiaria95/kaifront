@@ -44,6 +44,7 @@ export { useNewsStore } from '../stores/news';
 export { useOrganisasiStore } from '../stores/organisasi';
 export { useProgramStore } from '../stores/program';
 export { useTestimoniStore } from '../stores/testimoni';
+export { useVisimisiStore } from '../stores/visimisi';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
 export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

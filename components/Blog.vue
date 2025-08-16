@@ -106,9 +106,6 @@
                   <p v-if="item.subtitle" class="text-muted mb-3 news-excerpt">
                     {{ truncateText(item.subtitle, 150) }}
                   </p>
-                  <div class="news-content-preview mb-3" v-if="item.description">
-                    <p class="text-muted mb-0">{{ truncateText(item.description, 200) }}</p>
-                  </div>
                   <div class="read-more-link">
                     <a 
                       href="#" 
@@ -184,6 +181,7 @@ export default {
       toggle: false,
       item: null,
       newsData: [],
+      expandedStates: [], // New state to track expanded/collapsed for each item
     };
   },
   computed: {
@@ -201,6 +199,8 @@ export default {
         
         // Use the news data array directly from the store
         this.newsData = this.newsStore.getNewsData;
+        // Initialize expanded states for all news items
+        this.expandedStates = new Array(this.newsData.length).fill(false);
       } catch (error) {
         console.error('Blog: Error fetching news:', error);
       }
@@ -237,6 +237,25 @@ export default {
         return text;
       }
       return text.substring(0, maxLength) + '...';
+    },
+
+    shouldShowReadMore(description) {
+      if (!description) return false;
+      
+      // Hapus HTML tags untuk menghitung panjang teks asli
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = description;
+      const textContent = tempDiv.textContent || tempDiv.innerText || '';
+      
+      // Perkiraan jumlah karakter untuk 3 baris (sekitar 150-180 karakter)
+      const estimatedCharsPerLine = 50;
+      const maxChars = estimatedCharsPerLine * 3;
+      
+      return textContent.length > maxChars;
+    },
+
+    toggleDescription(index) {
+      this.expandedStates[index] = !this.expandedStates[index];
     },
     
     activeItem(item) {
@@ -345,5 +364,58 @@ export default {
 
 .read-more-link a:hover i {
   transform: translateX(3px);
+}
+
+/* Description text styling for blog */
+.description-text {
+  line-height: 1.6;
+  max-height: 4.8em; /* 3 baris dengan line-height 1.6 */
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  position: relative;
+}
+
+.description-text.expanded {
+  max-height: none;
+}
+
+/* Styling untuk paragraf di dalam description-text */
+.description-text p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+.description-text p:last-child {
+  margin-bottom: 0;
+}
+
+.description-text:not(.expanded)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1.6em; /* Satu baris */
+  background: linear-gradient(transparent, white);
+  pointer-events: none;
+}
+
+/* Read more button styling for blog */
+.read-more-btn {
+  color: #000;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+  border: 1px solid #6c757d;
+  background: transparent;
+}
+
+.read-more-btn:hover {
+  color: #fff;
+  background-color: #6c757d;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 </style>

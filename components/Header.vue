@@ -22,7 +22,7 @@
                 <nav id="mobile-menu">
                   <ul class="d-block">
                     <li>
-                      <a class="active" href="#home">Beranda</a>
+                      <a class="active" href="/">Beranda</a>
                     </li>
                     <li class="menu-item-has-children">
                       <a href="#">Profil <i class="fa fa-angle-down"></i></a>
@@ -31,7 +31,7 @@
                           <a href="#about">Tentang Saya</a>
                         </li>
                         <li>
-                          <a href="#visimisi">Visi & Misi</a>
+                          <a href="/visimisi">Visi & Misi</a>
                         </li>
                         <li>
                           <a href="#pendidikan">Pendidikan</a>
@@ -166,7 +166,7 @@
         <nav class="mean-nav">
           <ul class="d-block">
             <li>
-              <a class="active" href="#home">Beranda</a>
+              <a class="active" href="/">Beranda</a>
             </li>
             <li class="menu-item-has-children" :class="{ open: mobileProfilSubmenuOpen }">
               <a href="#" @click.prevent="toggleMobileProfilSubmenu">Profil</a>

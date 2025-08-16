@@ -32,6 +32,8 @@ export default defineNuxtPlugin(() => {
     program: () => `${apiBase}/programs/open`,
     // About endpoint
     about: () => `${apiBase}/about`,
+    // Visimisi endpoint
+    visimisi: () => `${apiBase}/visimisi`,
     // Galeri endpoint
     galeri: () => `${apiBase}/galeri`,
     // Kategori Galeri endpoint

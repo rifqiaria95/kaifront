@@ -47,7 +47,7 @@
             <!-- Education content -->
             <ul class="education-content">
               <li
-                v-for="education in educationData"
+                v-for="(education, index) in educationData"
                 :key="education.id"
                 class="mb-32 d-flex align-items-start rotate-hover"
               >
@@ -69,9 +69,20 @@
                       ( {{ education.year }} )</span
                     >
                   </h4>
-                  <p class="mb-0 mt-15">
-                    {{ cleanText(education.description) }}
-                  </p>
+                  <div class="description-container">
+                    <div 
+                      class="mb-0 mt-15 description-text"
+                      :class="{ 'expanded': expandedStates[index] }"
+                      v-html="education.description"
+                    ></div>
+                    <button 
+                      v-if="shouldShowReadMore(education.description)"
+                      class="btn btn-sm btn-outline-secondary mt-3 read-more-btn"
+                      @click="toggleDescription(index)"
+                    >
+                      {{ expandedStates[index] ? 'Sembunyikan' : 'Baca Selengkapnya' }}
+                    </button>
+                  </div>
                 </div>
               </li>
               
@@ -95,9 +106,20 @@
                       ( 1985 - 1991 )</span
                     >
                   </h4>
-                  <p class="mb-0 mt-15">
-                    Ludantium totam rem aperia meaque ipsa quae ab illo inven tore veritatis et quasi architecto beatae vitae.
-                  </p>
+                  <div class="description-container">
+                    <p 
+                      class="mb-0 mt-15 description-text"
+                      :class="{ 'expanded': fallbackExpanded }"
+                    >
+                      Ludantium totam rem aperia meaque ipsa quae ab illo inven tore veritatis et quasi architecto beatae vitae.
+                    </p>
+                    <button 
+                      class="btn btn-sm btn-outline-secondary mt-3 read-more-btn"
+                      @click="fallbackExpanded = !fallbackExpanded"
+                    >
+                      {{ fallbackExpanded ? 'Sembunyikan' : 'Baca Selengkapnya' }}
+                    </button>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -153,6 +175,10 @@ const educationStore = useEducationStore()
 
 // State untuk image error handling
 const imageError = ref(false)
+
+// State untuk expanded description
+const expandedStates = ref({})
+const fallbackExpanded = ref(false)
 
 // Computed
 const educationData = computed(() => {
@@ -214,6 +240,22 @@ const handleImageLoad = (event) => {
   imageError.value = false
 }
 
+// Function untuk mengecek apakah perlu menampilkan tombol "Baca Selengkapnya"
+const shouldShowReadMore = (description) => {
+  if (!description) return false
+  
+  // Perkiraan jumlah karakter untuk 4 baris (sekitar 200-250 karakter)
+  const estimatedCharsPerLine = 60
+  const maxChars = estimatedCharsPerLine * 4
+  
+  return description.length > maxChars
+}
+
+// Function untuk toggle expanded state
+const toggleDescription = (index) => {
+  expandedStates.value[index] = !expandedStates.value[index]
+}
+
 // Fetch data saat komponen di-mount
 onMounted(async () => {
   console.log('Education component mounted')
@@ -226,3 +268,56 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped>
+.description-container {
+  position: relative;
+}
+
+.description-text {
+  line-height: 1.6;
+  max-height: 6.4em; /* 4 baris dengan line-height 1.6 */
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  position: relative;
+}
+
+.description-text.expanded {
+  max-height: none;
+}
+
+/* Styling untuk paragraf di dalam description-text */
+.description-text p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.description-text p:last-child {
+  margin-bottom: 0;
+}
+
+.description-text:not(.expanded)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1.6em; /* Satu baris */
+  background: linear-gradient(transparent, white);
+  pointer-events: none;
+}
+
+.read-more-btn {
+  color: #000;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+}
+
+.read-more-btn:hover {
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+</style>

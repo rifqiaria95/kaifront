@@ -184,6 +184,7 @@ declare global {
   const useTemplateRef: typeof import('vue')['useTemplateRef']
   const useTestimoniStore: typeof import('../../stores/testimoni')['useTestimoniStore']
   const useTransitionState: typeof import('vue')['useTransitionState']
+  const useVisimisiStore: typeof import('../../stores/visimisi')['useVisimisiStore']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
@@ -391,6 +392,7 @@ declare module 'vue' {
     readonly useTemplateRef: UnwrapRef<typeof import('vue')['useTemplateRef']>
     readonly useTestimoniStore: UnwrapRef<typeof import('../../stores/testimoni')['useTestimoniStore']>
     readonly useTransitionState: UnwrapRef<typeof import('vue')['useTransitionState']>
+    readonly useVisimisiStore: UnwrapRef<typeof import('../../stores/visimisi')['useVisimisiStore']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
