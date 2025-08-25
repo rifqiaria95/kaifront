@@ -51,7 +51,19 @@
                   :alt="`${item.nama} logo`"
                   class="img-fluid"
                   style="max-width: 100px; height: auto;"
+                  @error="handleImageError"
+                  @load="handleImageLoad"
                 />
+                <!-- Debug info untuk image -->
+                <div v-if="imageError" class="mt-2 p-2 bg-warning text-dark small">
+                  <strong>Image Debug:</strong><br>
+                  Image URL: {{ getImageUrl(item) }}<br>
+                  Item Image: {{ item.image }}<br>
+                  Item Image URL: {{ item.image_url }}<br>
+                  <button @click="imageError = false" class="btn btn-sm btn-outline-warning mt-1">
+                    Hide Debug
+                  </button>
+                </div>
               </a>
             </div>
             <!-- /award-logo -->
@@ -111,24 +123,48 @@ const props = defineProps({
 // Store
 const organisasiStore = useOrganisasiStore()
 
+// State untuk image error handling
+const imageError = ref(false)
+
 // API helper
 const { $api } = useNuxtApp()
 
 // Methods
-const getImageUrl = (imagePath) => {
+const getImageUrl = (item) => {
   // Jika ada image_url dari API dan tidak null, gunakan itu (ini adalah Storage URL)
-  if (imagePath?.image_url) {
-    return imagePath.image_url
+  if (item?.image_url) {
+    return item.image_url
   }
   
-  // Jika ada image field tapi image_url null (file tidak ada), gunakan default
-  if (imagePath?.image && !imagePath?.image_url) {
-    console.warn('Image file not found in storage:', imagePath.image)
+  // Jika ada image field dan berupa URL lengkap, gunakan itu
+  if (item?.image && (item.image.startsWith('http://') || item.image.startsWith('https://'))) {
+    return item.image
+  }
+  
+  // Jika ada image field tapi bukan URL lengkap, gunakan default
+  if (item?.image && !item.image.startsWith('http')) {
+    console.warn('Image path not a valid URL:', item.image)
     return '/images/award/award-logo1.png'
   }
   
   // Fallback ke default image
   return '/images/award/award-logo1.png'
+}
+
+const handleImageError = (event) => {
+  imageError.value = true
+  console.error('Image failed to load:', event.target.src)
+  
+  // Coba fallback ke default image jika bukan default image yang gagal
+  const img = event.target
+  if (!img.src.includes('award-logo1.png')) {
+    img.src = '/images/award/award-logo1.png'
+  }
+}
+
+const handleImageLoad = (event) => {
+  imageError.value = false
+  console.log('Image loaded successfully:', event.target.src)
 }
 
 const retryFetch = () => {

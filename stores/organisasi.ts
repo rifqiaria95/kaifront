@@ -66,6 +66,8 @@ export const useOrganisasiStore = defineStore('organisasi', {
         // Response adalah array of education data
         if (Array.isArray(response)) {
           console.log('Setting organisasi data:', response)
+          console.log('First item image field:', response[0]?.image)
+          console.log('First item image_url field:', response[0]?.image_url)
           this.organisasiData = response
         } else {
           throw new Error('Format response tidak valid')
