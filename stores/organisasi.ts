@@ -8,6 +8,7 @@ interface OrganisasiData {
   lokasi     : string
   deskripsi  : string
   image      : string | null
+  image_url  : string | null
   created_by : string
   created_at : string
   updated_at : string

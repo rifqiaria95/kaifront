@@ -47,7 +47,7 @@
             <div class="award-logo mt-10 mb-20">
               <a href="#" class="d-block">
                 <img 
-                  :src="getImageUrl(item.image)" 
+                  :src="getImageUrl(item)" 
                   :alt="`${item.nama} logo`"
                   class="img-fluid"
                   style="max-width: 100px; height: auto;"
@@ -116,20 +116,19 @@ const { $api } = useNuxtApp()
 
 // Methods
 const getImageUrl = (imagePath) => {
-  if (!imagePath) {
-    return '/images/award/award-logo1.png' // Default image
+  // Jika ada image_url dari API dan tidak null, gunakan itu (ini adalah Storage URL)
+  if (imagePath?.image_url) {
+    return imagePath.image_url
   }
   
-  if ($api && $api.getImageUrl) {
-    return $api.getImageUrl(imagePath)
+  // Jika ada image field tapi image_url null (file tidak ada), gunakan default
+  if (imagePath?.image && !imagePath?.image_url) {
+    console.warn('Image file not found in storage:', imagePath.image)
+    return '/images/award/award-logo1.png'
   }
   
-  // Fallback
-  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-    return imagePath
-  }
-  
-  return `http://localhost:8000/api/images/${imagePath}`
+  // Fallback ke default image
+  return '/images/award/award-logo1.png'
 }
 
 const retryFetch = () => {
