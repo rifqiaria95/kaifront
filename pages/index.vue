@@ -10,21 +10,19 @@
     <Chatbot />
     <About2 :signature="'/images/index-4/signature.png'" />
     <Counter />
-    <Portfolio2 />
+    <Blog :classic="true" :bg="'secondary-bg'" />
+    <Galeri />
     <Award :bg="'secondary-bg'" />
     <Experience />
     <Education :imgGrayScale="true" />
-    <Skill2 />
-    <Pricing :bg="'secondary-bg'" />
-    <Service :bg="''" :titleColor="''" :items="serviceItems" :classic="true" />
+    <Program :bg="'secondary-bg'" />
+    <Brand />
     <Testimonials
       :classic="true"
       :testimonialIcon="'/images/index-4/testimonial-icon.png'"
       :imgGrayScale="true"
     />
-    <Brand />
     <Contact />
-    <Blog :classic="true" :bg="'secondary-bg'" :items="blogItems" />
   </NuxtLayout>
 </template>
 
@@ -72,38 +70,6 @@ export default {
           title: "Security Analysis",
           icon: "/images/index-4/work/service-icon4.png",
           desc: "Ludantium totam rem aperia meaququae ab tatis et quasi architecto beatae vit dunt ut labore et dolore magna aliqua.",
-        },
-      ],
-      blogItems: [
-        {
-          id: 1,
-          title: "Jim Morrison says when the musics over turn off the light",
-          img: "/images/blog/blog-img1.jpg",
-        },
-        {
-          id: 2,
-          title: "The man who is happy will makes others too",
-          img: "/images/blog/blog-img2.jpg",
-        },
-        {
-          id: 3,
-          title: "The world is not enough to live your life",
-          img: "/images/blog/blog-img3.jpg",
-        },
-        {
-          id: 4,
-          title: "So close no matter how far could be much more",
-          img: "/images/blog/blog-img4.jpg",
-        },
-        {
-          id: 5,
-          title: "Kobita tumi sopno charini hoye khobor nio na",
-          img: "/images/blog/blog-img5.jpg",
-        },
-        {
-          id: 6,
-          title: "Become the best version of you everyday",
-          img: "/images/blog/blog-img6.jpg",
         },
       ],
     };

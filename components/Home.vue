@@ -51,15 +51,15 @@
                     style="color: #c75142 !important; font-size: 30px; letter-spacing: 4px;"
                     >Halo, Saya</span
                   >
-                  Selly Andriany Gantina
+                  Hj. Selly Andriany Gantina
                 </h1>
                 <h2 class="text-uppercase white-text mb-40" style="color: #fff !important; font-size: 24px;">
-                  Saya adalah seorang
+                  Saya adalah
                   <span class="d-text d-block d-sm-inline-block">
                     <span
                       class="typer theme-color d-inline-block pl-2"
                       id="main"
-                      data-words="Anggota Dewan Perwakilan Rakyat RI periode 2019–2024,Mantan Anggota Dewan Perwakilan Rakyat RI periode 2024–2029, Mantan Anggota DPRD Jawa Barat 2004-2009"
+                      data-words="Anggota Komisi VIII DPR RI dari Fraksi PDI Perjuangan."
                       data-delay="100"
                       data-deleteDelay="1000"
                       data-colors="#c75142"
@@ -125,7 +125,7 @@
             ></a>
           </li>
           <li class="mt-10 mb-10 rotate-hover">
-            <a class="text-white text-center d-inline-block rotate" href="#"
+            <a class="text-white text-center d-inline-block rotate" href="https://www.youtube.com/@sagchannel1320" target="_blank"
               ><i class="fab fa-youtube"></i
             ></a>
           </li>

@@ -3,8 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "chmod +x ./node_modules/.bin/nuxt && nuxt build",
     "dev": "nuxt dev",
+    "start": "nuxt start",
+    "prepare": "echo skip",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"

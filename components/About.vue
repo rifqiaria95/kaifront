@@ -23,7 +23,7 @@
                   >
                                       <img
                     class="border-radius10 position-relative z-index11"
-                    :src="getImageUrl(aboutData?.image)"
+                    :src="aboutData?.image_url || '/images/about/about-img.jpg'"
                     :alt="aboutData?.title ? cleanText(aboutData.title) : 'About Image'"
                     @error="handleImageError"
                     @load="handleImageLoad"
@@ -32,8 +32,7 @@
                   <div v-if="imageError" class="mt-2 p-2 bg-warning text-dark small">
                     <strong>Image Debug:</strong><br>
                     Image Path: {{ aboutData?.image || 'null' }}<br>
-                    Constructed URL: {{ getImageUrl(aboutData?.image) }}<br>
-                    Expected Location: {{ $api.getImageUrl(aboutData?.image) }}<br>
+                    Image URL: {{ aboutData?.image_url || 'null' }}<br>
                     <button @click="imageError = false" class="btn btn-sm btn-outline-warning mt-1">
                       Hide Debug
                     </button>
@@ -225,11 +224,6 @@ const imageError = ref(false)
 
 // Functions
 const { $api } = useNuxtApp()
-
-const getImageUrl = (imagePath) => {
-  console.log('getImageUrl called with:', imagePath)
-  return $api.getImageUrl(imagePath)
-}
 
 const handleImageError = (event) => {
   console.warn('Image failed to load:', event.target.src)

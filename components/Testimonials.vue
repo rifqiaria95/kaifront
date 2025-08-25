@@ -7,9 +7,9 @@
             <div class="position-relative">
               <div class="title">
                 <span class="theme-color text-uppercase d-block mb-6"
-                  >Testimonials</span
+                  >Apa Kata Mereka</span
                 >
-                <h2 class="mb-20">What People Say</h2>
+                <h2 class="mb-20">Testimoni</h2>
               </div>
               <!-- /title -->
             </div>
@@ -18,90 +18,57 @@
                 <img class="theme-color" :src="testimonialIcon" alt="quote" />
               </div>
               <div class="testimonial-active pl-80 pr-90">
-                <client-only>
+                <!-- Loading state -->
+                <div v-if="testimoniStore.isLoading" class="text-center py-5">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <p class="mt-3">Memuat testimoni...</p>
+                </div>
+
+                <!-- Error state -->
+                <div v-else-if="testimoniStore.hasError" class="text-center py-5">
+                  <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    {{ testimoniStore.hasError }}
+                  </div>
+                  <button @click="testimoniStore.fetchTestimoniData()" class="btn btn-primary">
+                    Coba Lagi
+                  </button>
+                </div>
+
+                <!-- Data testimoni -->
+                <client-only v-else-if="testimoniStore.getTestimoniData.length > 0">
                   <Swiper
-                    :autoplay="{ delay: 8000, disableOnInteraction: true }"
-                    :navigation="true"
+                    :autoplay="{ delay: 3000, disableOnInteraction: false }"
+                    :navigation="false"
                     :pagination="{ clickable: true }"
                     :slides-per-view="1"
                     :loop="true"
+                    @swiper="onSwiper"
+                    @slideChange="onSlideChange"
                   >
-                    <SwiperSlide>
+                    <SwiperSlide v-for="testimoni in testimoniStore.getTestimoniData" :key="testimoni.id">
                       <div class="testimonial-content">
                         <blockquote
                           class="testimonial-text position-relative mb-0 font-italic openS-font-family text-color"
+                          v-html="testimoni.testimoni"
                         >
-                          Excepteur sint occaecat cupidatat non proiden sunt in
-                          culpa qui officia deserunt mollit anim id est laebor um.
-                          Sed ut perspiciatis unde omnis iste natus error sit
-                          volup tatem gotiraz bole ami ke
                         </blockquote>
                         <div class="testi-info d-flex align-items-center mt-40">
                           <div class="testi-avatar mr-25">
                             <img
                               class="rounded-circle"
-                              src="/images/testimonial/author-img.jpg"
-                              alt="author image 1"
+                              :src="getImageUrl(testimoni.gambar)"
+                              :alt="`${testimoni.nama} testimoni`"
+                              @error="handleImageError"
+                              style="width: 60px; height: 60px; object-fit: cover;"
                             />
                           </div>
                           <!-- /testi-avatar -->
                           <div class="avatar-info">
-                            <h5 class="mb-1 text-capitalize">Paul Harrison,</h5>
-                            <p class="meta-text-color mb-0">codeefly</p>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /testimonial-content -->
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div class="testimonial-content">
-                        <blockquote
-                          class="testimonial-text position-relative mb-0 font-italic openS-font-family text-color"
-                        >
-                          Excepteur sint occaecat cupidatat non proiden sunt in
-                          culpa qui officia deserunt mollit anim id est laebor um.
-                          Sed ut perspiciatis unde omnis iste natus error sit
-                          volup tatem gotiraz bole ami ke
-                        </blockquote>
-                        <div class="testi-info d-flex align-items-center mt-40">
-                          <div class="testi-avatar mr-25">
-                            <img
-                              class="rounded-circle"
-                              src="/images/testimonial/author-img.jpg"
-                              alt="author image 2"
-                            />
-                          </div>
-                          <!-- /testi-avatar -->
-                          <div class="avatar-info">
-                            <h5 class="mb-1 text-capitalize">Paul Harrison,</h5>
-                            <p class="meta-text-color mb-0">codeefly</p>
-                          </div>
-                        </div>
-                      </div></SwiperSlide
-                    >
-                    <SwiperSlide>
-                      <!-- /testimonial-content -->
-                      <div class="testimonial-content">
-                        <blockquote
-                          class="testimonial-text position-relative mb-0 font-italic openS-font-family text-color"
-                        >
-                          Excepteur sint occaecat cupidatat non proiden sunt in
-                          culpa qui officia deserunt mollit anim id est laebor um.
-                          Sed ut perspiciatis unde omnis iste natus error sit
-                          volup tatem gotiraz bole ami ke
-                        </blockquote>
-                        <div class="testi-info d-flex align-items-center mt-40">
-                          <div class="testi-avatar mr-25">
-                            <img
-                              class="rounded-circle"
-                              src="/images/testimonial/author-img.jpg"
-                              alt="author image 3"
-                            />
-                          </div>
-                          <!-- /testi-avatar -->
-                          <div class="avatar-info">
-                            <h5 class="mb-1 text-capitalize">Paul Harrison,</h5>
-                            <p class="meta-text-color mb-0">codeefly</p>
+                            <h5 class="mb-1 text-capitalize">{{ testimoni.nama }}</h5>
+                            <p class="meta-text-color mb-0">{{ testimoni.instansi }}</p>
                           </div>
                         </div>
                       </div>
@@ -109,6 +76,15 @@
                     </SwiperSlide>
                   </Swiper>
                 </client-only>
+
+                <!-- Empty state -->
+                <div v-else class="text-center py-5">
+                  <div class="alert alert-info" role="alert">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Belum ada testimoni yang tersedia.
+                  </div>
+                </div>
+
                 <div
                   class="slick-dots t-dot d-flex gap-5 pl-80 pr-90 mt-5"
                 ></div>
@@ -126,7 +102,7 @@
               <img
                 class="border-radius10"
                 :class="`${imgGrayScale ? 'img-grayscale' : ''}`"
-                src="/images/testimonial/testimonials-img.jpg"
+                src="/images/testimonial/testimoni.jpg"
                 alt="author image "
               />
             </div>
@@ -156,6 +132,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useTestimoniStore } from "@/stores/testimoni";
 
 export default {
   components: {
@@ -163,15 +140,49 @@ export default {
     SwiperSlide,
   },
   setup() {
+    const testimoniStore = useTestimoniStore();
+    const { $api } = useNuxtApp();
+
+    // Fetch data testimoni saat komponen dimount
+    testimoniStore.fetchTestimoniData();
+
     const onSwiper = (swiper) => {
-      console.log(swiper);
+      console.log('Swiper initialized:', swiper);
     };
+    
     const onSlideChange = () => {
       console.log("slide change");
     };
+
+    // Helper function untuk mendapatkan URL gambar
+    const getImageUrl = (imagePath) => {
+      if ($api && $api.getImageUrl) {
+        return $api.getImageUrl(imagePath);
+      }
+      
+      // Fallback jika $api tidak tersedia
+      if (!imagePath) {
+        return '/images/testimonial/author-img.jpg';
+      }
+      
+      if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+        return imagePath;
+      }
+      
+      return `http://localhost:8000/api/images/${imagePath}`;
+    };
+
+    // Handle image error
+    const handleImageError = (event) => {
+      event.target.src = '/images/testimonial/author-img.jpg';
+    };
+
     return {
+      testimoniStore,
       onSwiper,
       onSlideChange,
+      getImageUrl,
+      handleImageError,
     };
   },
   props: {
@@ -190,3 +201,48 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.testimonial-text {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.testi-avatar img {
+  border: 3px solid #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.avatar-info h5 {
+  font-weight: 600;
+  color: #333;
+}
+
+.avatar-info p {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Loading spinner styles */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Alert styles */
+.alert {
+  border-radius: 8px;
+  border: none;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+</style>

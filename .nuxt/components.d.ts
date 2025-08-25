@@ -27,15 +27,15 @@ interface _GlobalComponents {
     'Experience': typeof import("../components/Experience.vue")['default']
     'Footer': typeof import("../components/Footer.vue")['default']
     'FunFact': typeof import("../components/FunFact.vue")['default']
+    'Galeri': typeof import("../components/Galeri.vue")['default']
+    'GaleriModal': typeof import("../components/GaleriModal.vue")['default']
     'Header': typeof import("../components/Header.vue")['default']
     'Home': typeof import("../components/Home.vue")['default']
     'Intro': typeof import("../components/Intro.vue")['default']
     'Portfolio': typeof import("../components/Portfolio.vue")['default']
-    'Portfolio2': typeof import("../components/Portfolio2.vue")['default']
     'Portfolio3': typeof import("../components/Portfolio3.vue")['default']
-    'PortfolioModal': typeof import("../components/PortfolioModal.vue")['default']
     'Preloader': typeof import("../components/Preloader.vue")['default']
-    'Pricing': typeof import("../components/Pricing.vue")['default']
+    'Program': typeof import("../components/Program.vue")['default']
     'ProgressBar': typeof import("../components/ProgressBar.vue")['default']
     'ScrollTop': typeof import("../components/ScrollTop.vue")['default']
     'Service': typeof import("../components/Service.vue")['default']
@@ -82,15 +82,15 @@ interface _GlobalComponents {
     'LazyExperience': LazyComponent<typeof import("../components/Experience.vue")['default']>
     'LazyFooter': LazyComponent<typeof import("../components/Footer.vue")['default']>
     'LazyFunFact': LazyComponent<typeof import("../components/FunFact.vue")['default']>
+    'LazyGaleri': LazyComponent<typeof import("../components/Galeri.vue")['default']>
+    'LazyGaleriModal': LazyComponent<typeof import("../components/GaleriModal.vue")['default']>
     'LazyHeader': LazyComponent<typeof import("../components/Header.vue")['default']>
     'LazyHome': LazyComponent<typeof import("../components/Home.vue")['default']>
     'LazyIntro': LazyComponent<typeof import("../components/Intro.vue")['default']>
     'LazyPortfolio': LazyComponent<typeof import("../components/Portfolio.vue")['default']>
-    'LazyPortfolio2': LazyComponent<typeof import("../components/Portfolio2.vue")['default']>
     'LazyPortfolio3': LazyComponent<typeof import("../components/Portfolio3.vue")['default']>
-    'LazyPortfolioModal': LazyComponent<typeof import("../components/PortfolioModal.vue")['default']>
     'LazyPreloader': LazyComponent<typeof import("../components/Preloader.vue")['default']>
-    'LazyPricing': LazyComponent<typeof import("../components/Pricing.vue")['default']>
+    'LazyProgram': LazyComponent<typeof import("../components/Program.vue")['default']>
     'LazyProgressBar': LazyComponent<typeof import("../components/ProgressBar.vue")['default']>
     'LazyScrollTop': LazyComponent<typeof import("../components/ScrollTop.vue")['default']>
     'LazyService': LazyComponent<typeof import("../components/Service.vue")['default']>
@@ -143,15 +143,15 @@ export const Education: typeof import("../components/Education.vue")['default']
 export const Experience: typeof import("../components/Experience.vue")['default']
 export const Footer: typeof import("../components/Footer.vue")['default']
 export const FunFact: typeof import("../components/FunFact.vue")['default']
+export const Galeri: typeof import("../components/Galeri.vue")['default']
+export const GaleriModal: typeof import("../components/GaleriModal.vue")['default']
 export const Header: typeof import("../components/Header.vue")['default']
 export const Home: typeof import("../components/Home.vue")['default']
 export const Intro: typeof import("../components/Intro.vue")['default']
 export const Portfolio: typeof import("../components/Portfolio.vue")['default']
-export const Portfolio2: typeof import("../components/Portfolio2.vue")['default']
 export const Portfolio3: typeof import("../components/Portfolio3.vue")['default']
-export const PortfolioModal: typeof import("../components/PortfolioModal.vue")['default']
 export const Preloader: typeof import("../components/Preloader.vue")['default']
-export const Pricing: typeof import("../components/Pricing.vue")['default']
+export const Program: typeof import("../components/Program.vue")['default']
 export const ProgressBar: typeof import("../components/ProgressBar.vue")['default']
 export const ScrollTop: typeof import("../components/ScrollTop.vue")['default']
 export const Service: typeof import("../components/Service.vue")['default']
@@ -198,15 +198,15 @@ export const LazyEducation: LazyComponent<typeof import("../components/Education
 export const LazyExperience: LazyComponent<typeof import("../components/Experience.vue")['default']>
 export const LazyFooter: LazyComponent<typeof import("../components/Footer.vue")['default']>
 export const LazyFunFact: LazyComponent<typeof import("../components/FunFact.vue")['default']>
+export const LazyGaleri: LazyComponent<typeof import("../components/Galeri.vue")['default']>
+export const LazyGaleriModal: LazyComponent<typeof import("../components/GaleriModal.vue")['default']>
 export const LazyHeader: LazyComponent<typeof import("../components/Header.vue")['default']>
 export const LazyHome: LazyComponent<typeof import("../components/Home.vue")['default']>
 export const LazyIntro: LazyComponent<typeof import("../components/Intro.vue")['default']>
 export const LazyPortfolio: LazyComponent<typeof import("../components/Portfolio.vue")['default']>
-export const LazyPortfolio2: LazyComponent<typeof import("../components/Portfolio2.vue")['default']>
 export const LazyPortfolio3: LazyComponent<typeof import("../components/Portfolio3.vue")['default']>
-export const LazyPortfolioModal: LazyComponent<typeof import("../components/PortfolioModal.vue")['default']>
 export const LazyPreloader: LazyComponent<typeof import("../components/Preloader.vue")['default']>
-export const LazyPricing: LazyComponent<typeof import("../components/Pricing.vue")['default']>
+export const LazyProgram: LazyComponent<typeof import("../components/Program.vue")['default']>
 export const LazyProgressBar: LazyComponent<typeof import("../components/ProgressBar.vue")['default']>
 export const LazyScrollTop: LazyComponent<typeof import("../components/ScrollTop.vue")['default']>
 export const LazyService: LazyComponent<typeof import("../components/Service.vue")['default']>

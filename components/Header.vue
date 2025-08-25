@@ -6,11 +6,11 @@
           <div class="row align-items-center">
             <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-5">
               <div class="logo mt-50 mb-50 transition5">
-                <a class="header-logo" href="#"
-                  ><img :src="logo" alt="THAMES"
+                <a class="header-logo" href="/"
+                  ><img :src="logo" alt="Selly"
                 /></a>
                 <a class="header-sticky-logo" href="#" v-if="logo2.length > 0"
-                  ><img :src="logo2" alt="HIBRO"
+                  ><img :src="logo2" alt="Gantina"
                 /></a>
               </div>
             </div>
@@ -22,7 +22,7 @@
                 <nav id="mobile-menu">
                   <ul class="d-block">
                     <li>
-                      <a class="active" href="#home">Beranda</a>
+                      <a class="active" href="/">Beranda</a>
                     </li>
                     <li class="menu-item-has-children">
                       <a href="#">Profil <i class="fa fa-angle-down"></i></a>
@@ -31,34 +31,94 @@
                           <a href="#about">Tentang Saya</a>
                         </li>
                         <li>
-                          <a href="#visimisi">Visi & Misi</a>
+                          <a href="/visimisi">Visi & Misi</a>
                         </li>
                         <li>
-                          <a href="#portfolio">Pendidikan</a>
+                          <a href="#pendidikan">Pendidikan</a>
+                        </li>
+                        <li>
+                          <a href="#pengalaman">Pengalaman</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                      <a href="#">Program <i class="fa fa-angle-down"></i></a>
+                      <ul class="submenu">
+                        <li>
+                          <a href="#">Capaian</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                          <a href="#">Mitra Kerja&nbsp;&nbsp;<i class="fa fa-angle-right" style="font-size: 1.1em;"></i></a>
+                          <ul class="submenu">
+                            <li>
+                              <a href="https://kemenag.go.id/">Kementrian Agama</a>
+                            </li>
+                            <br>
+                            <li>
+                              <a href="https://kemensos.go.id/">Kementrian Sosial</a>
+                            </li>
+                            <li>
+                              <a href="https://www.kemenpppa.go.id/">Kementrian Pemberdayaan Perempuan</a>
+                            </li>
+                            <li>
+                              <a href="https://www.bnpb.go.id/">Badan Nasional Penanggulangan Bencana (BNPB)</a>
+                            </li>
+                            <li>
+                              <a href="https://kpa.go.id/">Komisi Perlindungan Anak Indonesia (KPAI)</a>
+                            </li>
+                            <li>
+                              <a href="https://baznas.go.id/">Badan Amil Zakat Nasional (BAZNAS)</a>
+                            </li>
+                            <li>
+                              <a href="https://haji.go.id/v5/">Badan Penyelenggara Haji (BPH)</a>
+                            </li>
+                            <li>
+                              <a href="https://bwi.go.id/">Badan Wakaf Indonesia (BWI)</a>
+                            </li>
+                            <li>
+                              <a href="https://bpkh.go.id/">Badan Pengelola Keuangan Haji (BPKH)</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#visimisi">Partai</a>
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <a href="#program">Program</a>
+                      <a href="#blog">Berita</a>
                     </li>
                     <li>
-                      <a href="#work">Pengalaman</a>
-                    </li>
-                    <li>
-                      <a href="#service">Pendidikan</a>
+                      <a href="#galeri">Galeri</a>
                     </li>
                     <li>
                       <a href="#contact">Kontak</a>
-                    </li>
-                    <li>
-                      <a href="#blog">Galeri</a>
                     </li>
                   </ul>
                 </nav>
               </div>
               <!-- /main-menu -->
               <div class="header-btn pl-45" v-if="downloadBtn">
+                <!-- Jika user sudah login -->
+                <div v-if="isAuthenticated" class="user-menu">
+                  <div class="dropdown">
+                    <a 
+                      href="#" 
+                      class="white-text text-uppercase d-inline-block f-700 dropdown-toggle"
+                      @click.prevent="toggleUserDropdown"
+                    >
+                      {{ user?.name || 'User' }}
+                    </a>
+                    <div class="dropdown-menu" :class="{ 'show': userDropdownOpen }">
+                      <a class="dropdown-item" href="#" @click.prevent="handleLogout">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Keluar
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Jika user belum login -->
                 <a
+                  v-else
                   href="/login"
                   class="white-text text-uppercase d-inline-block f-700"
                   >Masuk</a
@@ -67,7 +127,7 @@
               <!-- /header-btn -->
               <div class="mobile-m-bar d-block d-lg-none ml-30">
                 <a
-                  @click="toggle = !toggle"
+                  @click="toggleMobileMenu"
                   class="mobile-menubar theme-color primary-hover"
                   href="javascript:void(0);"
                   ><i class="far fa-bars"></i
@@ -95,7 +155,7 @@
   >
     <div class="d-fle justify-content-between w-100">
       <div class="close-icon d-inline-block float-right clear-both mt-20 mb-15">
-        <a href="javascript:void(0);" @click="toggle = !toggle"
+        <a href="javascript:void(0);" @click="toggleMobileMenu"
           ><span class="icon-clear theme-color"
             ><i class="fa fa-times"></i></span
         ></a>
@@ -106,10 +166,10 @@
         <nav class="mean-nav">
           <ul class="d-block">
             <li>
-              <a class="active" href="#home">Beranda</a>
+              <a class="active" href="/">Beranda</a>
             </li>
-            <li class="menu-item-has-children" :class="{ open: mobileSubmenuOpen }">
-              <a href="#" @click.prevent="toggleMobileSubmenu">Profil</a>
+            <li class="menu-item-has-children" :class="{ open: mobileProfilSubmenuOpen }">
+              <a href="#" @click.prevent="toggleMobileProfilSubmenu">Profil</a>
               <ul class="submenu">
                 <li>
                   <a href="#about">Tentang Saya</a>
@@ -118,24 +178,75 @@
                   <a href="#visimisi">Visi & Misi</a>
                 </li>
                 <li>
-                  <a href="#portfolio">Pendidikan</a>
+                  <a href="#pendidikan">Pendidikan</a>
+                </li>
+                <li>
+                  <a href="#pengalaman">Pengalaman</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item-has-children" :class="{ open: mobileProgramSubmenuOpen }">
+              <a href="#" @click.prevent="toggleMobileProgramSubmenu">Program</a>
+              <ul class="submenu">
+                <li>
+                  <a href="#">Capaian</a>
+                </li>
+                <li class="menu-item-has-children" :class="{ open: mobileMitraKerjaSubmenuOpen }">
+                  <a href="#" @click.prevent="toggleMobileMitraKerjaSubmenu">Mitra Kerja </a>
+                  <ul class="submenu">
+                    <li>
+                      <a href="https://kemenag.go.id/">Kementrian Agama</a>
+                    </li>
+                    <br>
+                    <li>
+                      <a href="https://kemensos.go.id/">Kementrian Sosial</a>
+                    </li>
+                    <li>
+                      <a href="https://www.kemenpppa.go.id/">Kementrian Pemberdayaan Perempuan</a>
+                    </li>
+                    <li>
+                      <a href="https://www.bnpb.go.id/">Badan Nasional Penanggulangan Bencana (BNPB)</a>
+                    </li>
+                    <li>
+                      <a href="https://kpa.go.id/">Komisi Perlindungan Anak Indonesia (KPAI)</a>
+                    </li>
+                    <li>
+                      <a href="https://baznas.go.id/">Badan Amil Zakat Nasional (BAZNAS)</a>
+                    </li>
+                    <li>
+                      <a href="https://bwi.go.id/">Badan Wakaf Indonesia (BWI)</a>
+                    </li>
+                    <li>
+                      <a href="https://haji.go.id/v5/">Badan Penyelenggara Haji (BPH)</a>
+                    </li>
+                    <li>
+                      <a href="https://bpkh.go.id/">Badan Pengelola Keuangan Haji (BPKH)</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#visimisi">Partai</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#program">Program</a>
+              <a href="#blog">Berita</a>
             </li>
             <li>
-              <a href="#work">Pengalaman</a>
-            </li>
-            <li>
-              <a href="#service">Pendidikan</a>
+              <a href="#galeri">Galeri</a>
             </li>
             <li>
               <a href="#contact">Kontak</a>
             </li>
-            <li>
-              <a href="#blog">Galeri</a>
+            <!-- User Menu for Mobile -->
+            <li v-if="isAuthenticated" class="mobile-user-menu">
+              <span class="text-white">{{ user?.name || 'User' }}</span>
+              <a href="#" @click.prevent="handleLogout" class="mobile-logout">
+                <i class="fas fa-sign-out-alt mr-2"></i>Keluar
+              </a>
+            </li>
+            <li v-else>
+              <a href="/login">Masuk</a>
             </li>
           </ul>
         </nav>
@@ -179,7 +290,7 @@
   <!-- /side-mobile-menu -->
   <div
     class="body-overlay"
-    @click="toggle = !toggle"
+    @click="toggleMobileMenu"
     :class="toggle ? 'opened' : ''"
   ></div>
   <!-- header extra info end  -->
@@ -190,16 +301,81 @@ export default {
   data() {
     return {
       toggle: false,
-      mobileSubmenuOpen: false, // This needs to be here
+      mobileProfilSubmenuOpen: false,
+      mobileProgramSubmenuOpen: false,
+      mobileMitraKerjaSubmenuOpen: false,
+      userDropdownOpen: false,
+    };
+  },
+  setup() {
+    const { isAuthenticated, user, logout, fetchUser } = useAuth();
+    
+    return {
+      isAuthenticated,
+      user,
+      logout,
+      fetchUser
     };
   },
   methods: {
-    toggleMobileSubmenu() {
-      this.mobileSubmenuOpen = !this.mobileSubmenuOpen;
+    toggleMobileProfilSubmenu() {
+      this.mobileProfilSubmenuOpen = !this.mobileProfilSubmenuOpen;
+      // Tutup submenu Program jika terbuka
+      if (this.mobileProfilSubmenuOpen) {
+        this.mobileProgramSubmenuOpen = false;
+      }
+    },
+    toggleMobileProgramSubmenu() {
+      this.mobileProgramSubmenuOpen = !this.mobileProgramSubmenuOpen;
+      // Tutup submenu Profil jika terbuka
+      if (this.mobileProgramSubmenuOpen) {
+        this.mobileProfilSubmenuOpen = false;
+      }
+    },
+    toggleMobileMitraKerjaSubmenu() {
+      this.mobileMitraKerjaSubmenuOpen = !this.mobileMitraKerjaSubmenuOpen;
+    },
+    toggleMobileMenu() {
+      this.toggle = !this.toggle;
+      // Tutup semua submenu ketika mobile menu ditutup
+      if (!this.toggle) {
+        this.mobileProfilSubmenuOpen = false;
+        this.mobileProgramSubmenuOpen = false;
+        this.mobileMitraKerjaSubmenuOpen = false;
+      }
+    },
+    toggleUserDropdown() {
+      this.userDropdownOpen = !this.userDropdownOpen;
+    },
+    async handleLogout() {
+      this.userDropdownOpen = false;
+      await this.logout();
     }
   },
   mounted() {
     thamesUtils.stickyNav();
+    
+    // Fetch user data saat komponen di-mount
+    const token = useCookie('auth-token');
+    if (token.value) {
+      this.fetchUser();
+    }
+
+    // Close dropdown when clicking outside - menggunakan method yang tepat
+    this.handleOutsideClick = (e) => {
+      const userMenu = document.querySelector('.user-menu');
+      if (userMenu && !userMenu.contains(e.target)) {
+        this.userDropdownOpen = false;
+      }
+    };
+    
+    document.addEventListener('click', this.handleOutsideClick);
+  },
+  beforeUnmount() {
+    // Remove event listener
+    if (this.handleOutsideClick) {
+      document.removeEventListener('click', this.handleOutsideClick);
+    }
   },
   props: {
     logo: {
@@ -286,11 +462,14 @@ export default {
 }
 
 .submenu li a {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 12px 20px;
   color: #333;
   text-decoration: none;
   white-space: nowrap;
+  font-size: 16px;
 }
 
 .submenu li a:hover {
@@ -402,6 +581,217 @@ export default {
 
 .side-mobile-menu .mean-container {
     width: 100% !important;
+}
+
+/* User Menu Dropdown Styles */
+.user-menu {
+  position: relative;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  content: "";
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-bottom: 0;
+  border-left: 4px solid transparent;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease-in-out;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  clear: both;
+  font-weight: 400;
+  color: #333;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.dropdown-item:hover {
+  color: #C75142;
+  background-color: #f8f9fa;
+}
+
+.dropdown-item i {
+  margin-right: 8px;
+}
+
+/* Mobile User Menu Styles */
+.mobile-user-menu {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+.mobile-user-menu span {
+  display: block;
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.mobile-logout {
+  display: block;
+  padding: 8px 0;
+  color: #fff !important;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.mobile-logout:hover {
+  color: #ddd !important;
+}
+
+/* Close dropdown when clicking outside */
+@media (min-width: 1200px) {
+  .user-menu:not(:hover) .dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+  }
+}
+
+/* =====================
+   Level-3 submenu (opens to the right)
+   ===================== */
+/* Parent li must be positioning context */
+.submenu > li {
+  position: relative;
+}
+
+/* Show level-3 when hovering second-level item */
+.submenu > li.menu-item-has-children:hover > .submenu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Override for nested submenu (level-3) */
+.submenu .submenu {
+  top: 0;
+  left: 100%;
+  transform: none;
+  padding-top: 0;
+  padding-left: 20px; /* hover bridge on the left */
+  min-width: 240px;
+}
+
+/* White panel starts after the left padding so we get a hover bridge */
+.submenu .submenu::after {
+  top: 0;
+  left: 20px;
+}
+
+/* Icon sizing in nested items */
+.submenu .menu-item-has-children > a i.fa {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* =====================
+   Mobile Level-3 submenu styles
+   ===================== */
+.side-mobile-menu .submenu .submenu {
+  display: none !important;
+  padding-left: 30px;
+  padding-top: 10px;
+  margin-top: 0;
+  background: transparent;
+  position: static;
+  transform: none;
+  border: none;
+  box-shadow: none;
+  min-width: auto;
+  opacity: 1;
+  visibility: visible;
+  transition: none;
+}
+
+.side-mobile-menu .submenu .menu-item-has-children.open > .submenu {
+  display: block !important;
+}
+
+.side-mobile-menu .submenu .submenu li {
+  margin: 0;
+}
+
+.side-mobile-menu .submenu .submenu li a {
+  padding: 6px 0;
+  color: #fff;
+  font-size: 14px;
+  border: none !important;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.side-mobile-menu .submenu .submenu li a:hover {
+  color: #ddd;
+}
+
+/* Arrow icon for level-3 submenu in mobile */
+.side-mobile-menu .submenu .menu-item-has-children > a {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.side-mobile-menu .submenu .menu-item-has-children > a::after {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-image: url('/fonts/angle-down-solid-full.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+  vertical-align: middle;
+}
+
+.side-mobile-menu .submenu .menu-item-has-children.open > a::after {
+  transform: rotate(90deg);
 }
 
 </style>

@@ -907,23 +907,290 @@ a:hover,
 
 /* 12. brand area
 -------------------------------------------------------------- */
+.brand-area {
+  overflow: visible;
+}
+
+.brand-height {
+  min-height: 200px;
+}
+
+.brand-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styling khusus untuk mobile centering */
+@media (max-width: 768px) {
+  .brand-active {
+    overflow: visible;
+  }
+  
+  .brand-active .swiper-container {
+    width: 100%;
+    overflow: visible;
+  }
+  
+  .brand-active .swiper-wrapper {
+    align-items: center;
+  }
+  
+  .brand-active .swiper-slide {
+    flex-shrink: 0;
+    width: auto !important;
+    margin: 0 20px;
+  }
+  
+  /* Memastikan spacing yang baik antar logo */
+  .brand-active .swiper-slide + .swiper-slide {
+    margin-left: 40px;
+  }
+}
 .brand-active li {
   text-align: center;
+  position: relative;
+  overflow: visible;
+  min-height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styling untuk mobile centering */
+@media (max-width: 768px) {
+  .brand-active li {
+    position: relative;
+    overflow: visible;
+  }
+}
+
+.brand-active .swiper-slide {
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: visible;
+  position: relative;
+}
+
+.brand-active .swiper-slide.swiper-slide-active {
+  z-index: 2;
+}
+
+/* Memastikan infinite loop berjalan lancar */
+.brand-active .swiper-wrapper {
+  transition-timing-function: linear;
+}
+
+/* Styling untuk mobile */
+@media (max-width: 768px) {
+  .brand-active .swiper-wrapper {
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .brand-active .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: auto;
+    width: auto !important;
+    flex-shrink: 0;
+  }
+  
+  /* Container dengan overflow visible */
+  .brand-active {
+    overflow: visible;
+    padding: 0 10px;
+  }
+}
+
+/* Responsive styling untuk brand */
+@media (max-width: 768px) {
+  .single-brand {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+  }
+  
+  .single-brand:hover {
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  
+  .single-brand img {
+    max-width: 90px;
+    max-height: 90px;
+    width: auto;
+    height: auto;
+  }
+  
+  .single-brand.single-brand-hover {
+    width: 120px;
+    height: 120px;
+    padding: 8px;
+    box-shadow: none !important;
+  }
+  
+  .single-brand.single-brand-hover:hover {
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  
+  .brand-active .swiper-slide {
+    height: 150px;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto !important;
+  }
+  
+  .brand-active li {
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .brand-height {
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .single-brand {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+  }
+  
+  .single-brand:hover {
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  
+  .single-brand img {
+    max-width: 70px;
+    max-height: 70px;
+    width: auto;
+    height: auto;
+  }
+  
+  .single-brand.single-brand-hover {
+    width: 100px;
+    height: 100px;
+    padding: 6px;
+    box-shadow: none !important;
+  }
+  
+  .single-brand.single-brand-hover:hover {
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  
+  .brand-active .swiper-slide {
+    height: 130px;
+    padding: 0 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto !important;
+  }
+  
+  .brand-active li {
+    min-height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .brand-height {
+    min-height: 160px;
+  }
 }
 .single-brand img {
-  display: inline-block;
+  display: block;
+  max-width: 120px;
+  max-height: 120px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 .brand-active li:hover .single-brand-out {
   transform: translateY(-100%);
 }
 .single-brand.single-brand-hover {
   position: absolute;
-  width: 100%;
-  margin: 0 auto;
+  width: 150px;
+  height: 150px;
+  margin: auto;
   top: 110%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.single-brand {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border-radius: 8px;
+  background: #fff;
+  transition: all 0.3s ease;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+  transform: translateZ(0);
+}
+
+/* Styling untuk memastikan logo selalu di tengah di mobile */
+@media (max-width: 768px) {
+  .single-brand {
+    position: relative;
+    margin: 0 auto;
+    transform: translateZ(0);
+  }
+}
+
+.single-brand:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.single-brand.single-brand-hover:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 .brand-active li:hover .single-brand-hover {
   top: 0;
+  z-index: 2;
 }
 
 /* 13. contact area

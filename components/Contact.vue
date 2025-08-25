@@ -6,9 +6,9 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="title text-center">
               <span class="theme-color text-uppercase d-block mb-6"
-                >Contact Me</span
+                >Kontak</span
               >
-              <h2>Let's Start A New Project</h2>
+              <h2>Hubungi Saya</h2>
             </div>
             <!-- /title -->
           </div>
@@ -31,8 +31,8 @@
                   </div>
                   <!-- /contact-icon -->
                   <div class="contact-text d-inline-block">
-                    <h4 class="mb-2">Location</h4>
-                    <p class="text-color mb-0">20 Bordeshi, London, Usa</p>
+                    <h4 class="mb-2">Alamat</h4>
+                    <p class="text-color mb-0">Jakarta, Indonesia</p>
                   </div>
                 </li>
                 <!-- /contact-location -->
@@ -48,10 +48,10 @@
                   </div>
                   <!-- /contact-icon -->
                   <div class="contact-text">
-                    <h4 class="mb-2">Phone</h4>
+                    <h4 class="mb-2">Telepon</h4>
                     <p class="mb-0">
                       <a class="text-color primary-hover d-block" href="#"
-                        >+123 456 7890</a
+                        >+62 812 3456 7890</a
                       >
                     </p>
                   </div>
@@ -72,7 +72,7 @@
                     <h4 class="mb-2">Email</h4>
                     <p class="mb-0">
                       <a class="text-color primary-hover d-block" href="#"
-                        >hello@thames.com</a
+                        >sellygantina18@gmail.com</a
                       >
                     </p>
                   </div>
@@ -193,7 +193,7 @@
           </div>
           <!-- /col -->
         </div>
-        <!-- /row -->
+       <!-- /row -->
         <div class="row">
           <div
             class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
@@ -203,12 +203,7 @@
             data-aos-delay="500"
           >
             <div class="map-wrapper mt-70" id="mapwrapper">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116833.88253546324!2d90.26379826216589!3d23.780919352725377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1720157387794!5m2!1sen!2sbd"
-                width="100%"
-                height="340"
-                style="border: 0"
-              ></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d247.6554452880122!2d108.5221432!3d-6.7102487!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee1d93cffb6cf%3A0x849c41d6bcdad97b!2sSelly%20Andriany%20Gantina%20DPR%20RI%20No.%203%20PDI%20Perjuangan!5e0!3m2!1sid!2sid!4v1755012112861!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
           <!-- /col -->
